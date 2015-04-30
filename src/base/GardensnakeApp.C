@@ -3,6 +3,8 @@
 #include "AppFactory.h"
 #include "ModulesApp.h"
 
+#include "FVNeutronDiffusion.h"
+
 template<>
 InputParameters validParams<GardensnakeApp>()
 {
@@ -41,6 +43,7 @@ GardensnakeApp::registerApps()
 void
 GardensnakeApp::registerObjects(Factory & factory)
 {
+  registerDGKernel(FVNeutronDiffusion);
 }
 
 void
