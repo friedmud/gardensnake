@@ -3,6 +3,11 @@
 #include "AppFactory.h"
 #include "ModulesApp.h"
 
+// Kernels
+#include "Absorption.h"
+#include "Scattering.h"
+#include "Fission.h"
+
 // BCs
 #include "FVVacuumBC.h"
 
@@ -48,6 +53,10 @@ GardensnakeApp::registerApps()
 void
 GardensnakeApp::registerObjects(Factory & factory)
 {
+  registerKernel(Absorption);
+  registerKernel(Scattering);
+  registerKernel(Fission);
+
   registerBoundaryCondition(FVVacuumBC);
 
   registerDGKernel(FVNeutronDiffusion);
