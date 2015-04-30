@@ -3,7 +3,12 @@
 #include "AppFactory.h"
 #include "ModulesApp.h"
 
+// BCs
+#include "FVVacuumBC.h"
+
+// DGKernels
 #include "FVNeutronDiffusion.h"
+
 
 template<>
 InputParameters validParams<GardensnakeApp>()
@@ -43,6 +48,8 @@ GardensnakeApp::registerApps()
 void
 GardensnakeApp::registerObjects(Factory & factory)
 {
+  registerBoundaryCondition(FVVacuumBC);
+
   registerDGKernel(FVNeutronDiffusion);
 }
 

@@ -10,6 +10,7 @@
   [./u]
     order = CONSTANT
     family = MONOMIAL
+    initial_condition = 1
   [../]
 []
 
@@ -35,16 +36,14 @@
 
 [BCs]
   [./left]
-    type = PenaltyDirichletBC
+    type = FVVacuumBC
     variable = u
     boundary = left
-    value = 0
   [../]
   [./right]
-    type = PenaltyDirichletBC
+    type = FVVacuumBC
     variable = u
     boundary = right
-    value = 1
   [../]
 []
 
