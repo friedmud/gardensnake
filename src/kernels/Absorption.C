@@ -40,11 +40,13 @@ Absorption::~Absorption()
 Real
 Absorption::computeQpResidual()
 {
+  // This is positive because it's always a loss
   return _sigma_a[_qp][_group] * _u[_qp];
 }
 
 Real
 Absorption::computeQpJacobian()
 {
+  // This is positive because it's always a loss
   return _sigma_a[_qp][_group];
 }

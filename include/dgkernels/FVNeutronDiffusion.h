@@ -32,8 +32,10 @@ protected:
   virtual Real computeQpResidual(Moose::DGResidualType type);
   virtual Real computeQpJacobian(Moose::DGJacobianType type);
 
-  MaterialProperty<Real> & _diffusivity;
-  MaterialProperty<Real> & _diffusivity_neighbor;
+  const unsigned int _group;
+
+  MaterialProperty<std::vector<Real> > & _diffusivity;
+  MaterialProperty<std::vector<Real> > & _diffusivity_neighbor;
 };
 
 #endif

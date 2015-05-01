@@ -36,7 +36,7 @@ protected:
 
   const unsigned int _group;
 
-  MaterialProperty<std::vector<std::vector<Real> > > & _nu_sigma_f;
+  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _vals;

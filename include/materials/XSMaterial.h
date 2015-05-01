@@ -12,34 +12,49 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FVVACUUMBC_H
-#define FVVACUUMBC_H
+#ifndef XSMATERIAL_H
+#define XSMATERIAL_H
 
-#include "IntegratedBC.h"
+#include "Material.h"
 
 
 //Forward Declarations
-class FVVacuumBC;
+class XSMaterial;
 
 template<>
-InputParameters validParams<FVVacuumBC>();
+InputParameters validParams<XSMaterial>();
 
-/**
- * Applies a DirichletBC using integral(penalty*(u - value))
- */
-class FVVacuumBC : public IntegratedBC
+class XSMaterial : public Material
 {
 public:
-
-  FVVacuumBC(const std::string & name, InputParameters parameters);
+  XSMaterial(const std::string & name, InputParameters parameters);
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
+  virtual void computeQpProperties();
 
-  const unsigned int _group;
+  class Zone
+  {
+  public:
+    /// Indexed by group!
+    std::vector<Real> diffusivity;
+    std::vector<Real> sigma_a;
+    std::vector<std::vector<Real> > sigma_s;
+    std::vector<Real> nu_sigma_f;
+  };
 
+  std::vector<Zone> _zones;
+
+  /// Diffusivity coefficient for each group
   MaterialProperty<std::vector<Real> > & _diffusivity;
+
+  /// Absorption XS for each group
+  MaterialProperty<std::vector<Real> > & _sigma_a;
+
+  /// Scattering cross section (full matrix: column->row)
+  MaterialProperty<std::vector<std::vector<Real> > > & _sigma_s;
+
+  /// Fission XS for each group
+  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 };
 
-#endif //FVVACUUMBC_H
+#endif //XSMATERIAL_H

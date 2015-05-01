@@ -23,7 +23,8 @@ InputParameters validParams<FVVacuumBC>()
 
 FVVacuumBC::FVVacuumBC(const std::string & name, InputParameters parameters) :
     IntegratedBC(name, parameters),
-    _diffusivity(getMaterialProperty<Real>("diffusivity"))
+    _group(_var.number()),
+    _diffusivity(getMaterialProperty<std::vector<Real> >("diffusivity"))
 {}
 
 Real
@@ -31,7 +32,9 @@ FVVacuumBC::computeQpResidual()
 {
   Real delta_x = _current_elem->hmax();
 
-  return ((2.0*_diffusivity[_qp]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp] / delta_x) ) ) * _u[_qp];
+  std::cout<<"Diffusivity: "<<_diffusivity[_qp][_group]<<std::endl;
+
+  return ((2.0*_diffusivity[_qp][_group]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp][_group] / delta_x) ) ) * _u[_qp];
 }
 
 Real
@@ -39,5 +42,5 @@ FVVacuumBC::computeQpJacobian()
 {
   Real delta_x = _current_elem->hmax();
 
-  return ((2.0*_diffusivity[_qp]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp] / delta_x) ) );
+  return ((2.0*_diffusivity[_qp][_group]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp][_group] / delta_x) ) );
 }

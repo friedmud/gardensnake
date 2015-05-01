@@ -50,7 +50,7 @@ Scattering::computeQpResidual()
   Real r = 0;
 
   for (unsigned int i=0; i<_vals.size(); i++)
-    r += _sigma_s[_qp][_group][i] * (*_vals[i])[_qp];
+    r -= _sigma_s[_qp][_group][i] * (*_vals[i])[_qp];
 
   return r;
 }
@@ -58,12 +58,12 @@ Scattering::computeQpResidual()
 Real
 Scattering::computeQpJacobian()
 {
-  return _sigma_s[_qp][_group][_group];
+  return -_sigma_s[_qp][_group][_group];
 }
 
 
 Real
 Scattering::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  return _sigma_s[_qp][_group][jvar];
+  return -_sigma_s[_qp][_group][jvar];
 }

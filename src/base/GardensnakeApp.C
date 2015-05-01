@@ -11,6 +11,9 @@
 // BCs
 #include "FVVacuumBC.h"
 
+// Materials
+#include "XSMaterial.h"
+
 // DGKernels
 #include "FVNeutronDiffusion.h"
 
@@ -58,6 +61,8 @@ GardensnakeApp::registerObjects(Factory & factory)
   registerKernel(Fission);
 
   registerBoundaryCondition(FVVacuumBC);
+
+  registerMaterial(XSMaterial);
 
   registerDGKernel(FVNeutronDiffusion);
 }
