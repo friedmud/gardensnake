@@ -12,37 +12,35 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FISSION_H
-#define FISSION_H
-
-#include "Kernel.h"
-
-class Fission;
+#include "SolutionNormalizer.h"
 
 template<>
-InputParameters validParams<Fission>();
-
-
-class Fission : public Kernel
+InputParameters validParams<SolutionNormalizer>()
 {
-public:
-  Fission(const std::string & name, InputParameters parameters);
-  virtual ~Fission();
+  InputParameters params = validParams<GeneralUserObject>();
 
-protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  params.addParam<PostprocessorName>("k", "This is here to inject a dependency to insure tha tthis runs after the eigenvalue computation");
 
-  const unsigned int _group;
+  return params;
+}
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+SolutionNormalizer::SolutionNormalizer(const std::string & name, InputParameters parameters) :
+    GeneralUserObject(name, parameters)
+{
+  // We don't actually need to store it.... just try to get it to create the dependency.
+  getPostprocessorValue("k");
+}
 
-  // The values of all of the fluxes
-  std::vector<VariableValue *> _vals;
+void
+SolutionNormalizer::execute()
+{
+  std::cout<<"Normalizing Solution!"<<std::endl;
 
-  PostprocessorValue & _k;
-};
+  Real norm = _fe_problem.getNonlinearSystem().solution().l2_norm();
 
+  std::cout<<"Norm: "<<norm<<std::endl;
 
-#endif /* FISSION_H */
+  _fe_problem.getNonlinearSystem().solution() /= norm;
+
+  _fe_problem.getNonlinearSystem().sys().update();
+}

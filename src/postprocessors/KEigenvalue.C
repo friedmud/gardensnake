@@ -12,37 +12,35 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FISSION_H
-#define FISSION_H
-
-#include "Kernel.h"
-
-class Fission;
+#include "KEigenvalue.h"
+#include "SubProblem.h"
 
 template<>
-InputParameters validParams<Fission>();
-
-
-class Fission : public Kernel
+InputParameters validParams<KEigenvalue>()
 {
-public:
-  Fission(const std::string & name, InputParameters parameters);
-  virtual ~Fission();
+  InputParameters params = validParams<GeneralPostprocessor>();
 
-protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  params.addParam<PostprocessorName>("fission_rate", "The Postprocessor that is computing the integrated fission rate");
 
-  const unsigned int _group;
+  return params;
+}
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+KEigenvalue::KEigenvalue(const std::string & name, InputParameters parameters) :
+    GeneralPostprocessor(name, parameters),
+    _fission_rate(getPostprocessorValue("fission_rate")),
+    _fission_rate_old(getPostprocessorValueOld("fission_rate")),
+    _old_eigenvalue(getPostprocessorValueOldByName(name))
+{}
 
-  // The values of all of the fluxes
-  std::vector<VariableValue *> _vals;
+Real
+KEigenvalue::getValue()
+{
+  std::cout<<"Computing Eigenvalue!"<<std::endl;
 
-  PostprocessorValue & _k;
-};
+  if (_t_step == 0)
+    return 1.0;
 
+  std::cout<<"_fission_rate_old "<<_fission_rate_old<<std::endl;
 
-#endif /* FISSION_H */
+  return (_fission_rate / _fission_rate_old) * _old_eigenvalue;
+}

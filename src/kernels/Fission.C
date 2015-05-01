@@ -21,6 +21,7 @@ InputParameters validParams<Fission>()
   InputParameters params = validParams<Kernel>();
 
   params.addRequiredCoupledVar("fluxes", "All of the fluxes");
+  params.addRequiredParam<PostprocessorName>("k", "The eigenvalue for the 1/k");
 
   return params;
 }
@@ -29,7 +30,8 @@ InputParameters validParams<Fission>()
 Fission::Fission(const std::string & name, InputParameters parameters) :
     Kernel(name, parameters),
     _group(_var.number()),
-    _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
+    _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f")),
+    _k(getPostprocessorValue("k"))
 {
   unsigned int n = coupledComponents("fluxes");
 
@@ -50,20 +52,20 @@ Fission::computeQpResidual()
   Real r = 0;
 
   for (unsigned int i=0; i<_vals.size(); i++)
-    r -= _nu_sigma_f[_qp][i] * (*_vals[i])[_qp];
+    r += _nu_sigma_f[_qp][i] * (*_vals[i])[_qp];
 
-  return r;
+  return -(1.0/_k)*r;
 }
 
 Real
 Fission::computeQpJacobian()
 {
-  return -_nu_sigma_f[_qp][_group];
+  return -(1.0/_k)*_nu_sigma_f[_qp][_group];
 }
 
 
 Real
 Fission::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  return -_nu_sigma_f[_qp][jvar];
+  return -(1.0/_k)*_nu_sigma_f[_qp][jvar];
 }

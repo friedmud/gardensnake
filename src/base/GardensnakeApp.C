@@ -17,6 +17,12 @@
 // DGKernels
 #include "FVNeutronDiffusion.h"
 
+// Postprocessors
+#include "IntegratedFissionRatePostprocessor.h"
+#include "KEigenvalue.h"
+
+// UserObjects
+#include "SolutionNormalizer.h"
 
 template<>
 InputParameters validParams<GardensnakeApp>()
@@ -65,6 +71,11 @@ GardensnakeApp::registerObjects(Factory & factory)
   registerMaterial(XSMaterial);
 
   registerDGKernel(FVNeutronDiffusion);
+
+  registerPostprocessor(IntegratedFissionRatePostprocessor);
+  registerPostprocessor(KEigenvalue);
+
+  registerUserObject(SolutionNormalizer);
 }
 
 void

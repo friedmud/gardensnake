@@ -12,37 +12,31 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FISSION_H
-#define FISSION_H
 
-#include "Kernel.h"
+#ifndef SOLUTIONNORMALIZER_H
+#define SOLUTIONNORMALIZER_H
 
-class Fission;
+// Moose
+#include "GeneralUserObject.h"
+#include "MooseMesh.h"
+
+//Forward Declarations
+class RandomHitUserObject;
+class SolutionNormalizer;
 
 template<>
-InputParameters validParams<Fission>();
+InputParameters validParams<SolutionNormalizer>();
 
-
-class Fission : public Kernel
+class SolutionNormalizer :
+  public GeneralUserObject
 {
 public:
-  Fission(const std::string & name, InputParameters parameters);
-  virtual ~Fission();
+  SolutionNormalizer(const std::string & name, InputParameters parameters);
 
-protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-  const unsigned int _group;
-
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
-
-  // The values of all of the fluxes
-  std::vector<VariableValue *> _vals;
-
-  PostprocessorValue & _k;
+  virtual ~SolutionNormalizer() {}
+  virtual void initialize(){}
+  virtual void execute();
+  virtual void finalize(){}
 };
 
-
-#endif /* FISSION_H */
+#endif

@@ -12,37 +12,35 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FISSION_H
-#define FISSION_H
+#ifndef KEIGENVALUE_H
+#define KEIGENVALUE_H
 
-#include "Kernel.h"
+#include "GeneralPostprocessor.h"
 
-class Fission;
+//Forward Declarations
+class KEigenvalue;
 
 template<>
-InputParameters validParams<Fission>();
+InputParameters validParams<KEigenvalue>();
 
-
-class Fission : public Kernel
+class KEigenvalue : public GeneralPostprocessor
 {
 public:
-  Fission(const std::string & name, InputParameters parameters);
-  virtual ~Fission();
+  KEigenvalue(const std::string & name, InputParameters parameters);
+
+  virtual void initialize() {}
+  virtual void execute() {}
+
+  /**
+   * This will return the degrees of freedom in the system.
+   */
+  virtual Real getValue();
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  const PostprocessorValue & _fission_rate;
+  const PostprocessorValue & _fission_rate_old;
 
-  const unsigned int _group;
-
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
-
-  // The values of all of the fluxes
-  std::vector<VariableValue *> _vals;
-
-  PostprocessorValue & _k;
+  const PostprocessorValue & _old_eigenvalue;
 };
 
-
-#endif /* FISSION_H */
+#endif //KEIGENVALUE_H

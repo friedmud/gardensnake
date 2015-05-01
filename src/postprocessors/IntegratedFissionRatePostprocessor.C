@@ -12,37 +12,37 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FISSION_H
-#define FISSION_H
-
-#include "Kernel.h"
-
-class Fission;
+#include "IntegratedFissionRatePostprocessor.h"
 
 template<>
-InputParameters validParams<Fission>();
-
-
-class Fission : public Kernel
+InputParameters validParams<IntegratedFissionRatePostprocessor>()
 {
-public:
-  Fission(const std::string & name, InputParameters parameters);
-  virtual ~Fission();
+  InputParameters params = validParams<ElementIntegralPostprocessor>();
 
-protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  params.addRequiredCoupledVar("fluxes", "All of the fluxes");
 
-  const unsigned int _group;
+  return params;
+}
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+IntegratedFissionRatePostprocessor::IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters) :
+    ElementIntegralPostprocessor(name, parameters),
+    _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
+{
+  unsigned int n = coupledComponents("fluxes");
 
-  // The values of all of the fluxes
-  std::vector<VariableValue *> _vals;
+  _vals.resize(n);
 
-  PostprocessorValue & _k;
-};
+  for (unsigned int i=0; i<_vals.size(); ++i)
+    _vals[i] = &coupledValue("fluxes", i);
+}
 
+Real
+IntegratedFissionRatePostprocessor::computeQpIntegral()
+{
+  Real r = 0;
 
-#endif /* FISSION_H */
+  for (unsigned int i=0; i<_vals.size(); i++)
+    r += _nu_sigma_f[_qp][i] * (*_vals[i])[_qp];
+
+  return r;
+}

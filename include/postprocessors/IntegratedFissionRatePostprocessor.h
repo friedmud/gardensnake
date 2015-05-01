@@ -12,37 +12,32 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef FISSION_H
-#define FISSION_H
+#ifndef INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
+#define INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
 
-#include "Kernel.h"
+#include "ElementIntegralPostprocessor.h"
 
-class Fission;
+//Forward Declarations
+class IntegratedFissionRatePostprocessor;
 
 template<>
-InputParameters validParams<Fission>();
+InputParameters validParams<IntegratedFissionRatePostprocessor>();
 
-
-class Fission : public Kernel
+/**
+ * This postprocessor computes the volume of a specified block.
+ */
+class IntegratedFissionRatePostprocessor : public ElementIntegralPostprocessor
 {
 public:
-  Fission(const std::string & name, InputParameters parameters);
-  virtual ~Fission();
+  IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters);
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-  const unsigned int _group;
+  virtual Real computeQpIntegral();
 
   MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _vals;
-
-  PostprocessorValue & _k;
 };
 
-
-#endif /* FISSION_H */
+#endif

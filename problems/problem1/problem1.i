@@ -1,21 +1,21 @@
 [Mesh]
   type = GeneratedMesh
   dim = 1
-  nx = 5
+  nx = 60
   ny = 10
-  xmax = 10
+  xmax = 300
 []
 
 [Variables]
   [./group_0]
     order = CONSTANT
     family = MONOMIAL
-    initial_condition = 1
+    initial_condition = 10
   [../]
   [./group_1]
     order = CONSTANT
     family = MONOMIAL
-    initial_condition = 1
+    initial_condition = 10
   [../]
 []
 
@@ -28,6 +28,7 @@
     type = Fission
     variable = group_0
     fluxes = 'group_0 group_1'
+    k = k
   [../]
   [./scatter_0]
     type = Scattering
@@ -103,6 +104,27 @@
   [../]
 []
 
+[Postprocessors]
+  [./fission_rate]
+    type = IntegratedFissionRatePostprocessor
+    execute_on = 'TIMESTEP_END initial'
+    fluxes = 'group_0 group_1'
+  [../]
+  [./k]
+    type = KEigenvalue
+    execute_on = 'TIMESTEP_END initial'
+    fission_rate = fission_rate
+  [../]
+[]
+
+[UserObjects]
+  [./normalizer]
+    type = SolutionNormalizer
+    execute_on = 'TIMESTEP_END initial'
+    k = k
+  [../]
+[]
+
 [Preconditioning]
   [./smp]
     type = SMP
@@ -111,7 +133,8 @@
 []
 
 [Executioner]
-  type = Steady
+  type = Transient
+  num_steps = 20
   solve_type = NEWTON
   petsc_options_iname = '-pc_type -pc_hypre_type'
   petsc_options_value = 'hypre boomeramg'
