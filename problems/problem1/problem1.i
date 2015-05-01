@@ -20,18 +20,13 @@
 []
 
 [Kernels]
-  active = 'absorption_0 fission_0 scatter_0 absorption_1 scatter_1 source_0 source_1'
-  [./diff]
-    type = Diffusion
-    variable = u
-  [../]
   [./absorption_0]
     type = Absorption
     variable = group_0
   [../]
   [./fission_0]
     type = Fission
-    variable = group_1
+    variable = group_0
     fluxes = 'group_0 group_1'
   [../]
   [./scatter_0]
@@ -108,11 +103,19 @@
   [../]
 []
 
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
 [Executioner]
   type = Steady
   solve_type = NEWTON
   petsc_options_iname = '-pc_type -pc_hypre_type'
   petsc_options_value = 'hypre boomeramg'
+  l_tol = 1e-9
 []
 
 [Outputs]
@@ -121,3 +124,4 @@
   print_linear_residuals = true
   print_perf_log = true
 []
+

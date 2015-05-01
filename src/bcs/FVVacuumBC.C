@@ -32,8 +32,6 @@ FVVacuumBC::computeQpResidual()
 {
   Real delta_x = _current_elem->hmax();
 
-  std::cout<<"Diffusivity: "<<_diffusivity[_qp][_group]<<std::endl;
-
   return ((2.0*_diffusivity[_qp][_group]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp][_group] / delta_x) ) ) * _u[_qp];
 }
 

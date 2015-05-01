@@ -50,7 +50,7 @@ Fission::computeQpResidual()
   Real r = 0;
 
   for (unsigned int i=0; i<_vals.size(); i++)
-    r += _nu_sigma_f[_qp][i] * (*_vals[i])[_qp];
+    r -= _nu_sigma_f[_qp][i] * (*_vals[i])[_qp];
 
   return r;
 }
