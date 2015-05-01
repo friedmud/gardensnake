@@ -38,12 +38,11 @@ Fission::Fission(const std::string & name, InputParameters parameters) :
   _vals.resize(n);
 
   for (unsigned int i=0; i<_vals.size(); ++i)
-    _vals[i] = &coupledValue("fluxes", i);
+    _vals[i] = &coupledValueOld("fluxes", i);
 }
 
 Fission::~Fission()
 {
-
 }
 
 Real
@@ -60,12 +59,12 @@ Fission::computeQpResidual()
 Real
 Fission::computeQpJacobian()
 {
-  return -(1.0/_k)*_nu_sigma_f[_qp][_group];
+  return 0;
 }
 
 
 Real
 Fission::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  return -(1.0/_k)*_nu_sigma_f[_qp][jvar];
+  return 0;
 }

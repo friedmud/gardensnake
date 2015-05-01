@@ -20,7 +20,6 @@
 []
 
 [Kernels]
-  active = 'scatter_0 scatter_1 fission_0 absorption_0 absorption_1'
   [./absorption_0]
     type = Absorption
     variable = group_0
@@ -70,22 +69,22 @@
 
 [BCs]
   [./right_0]
-    type = FVVacuumBC
+    type = PenaltyBC
     variable = group_0
     boundary = right
   [../]
   [./left_0]
-    type = FVVacuumBC
+    type = PenaltyBC
     variable = group_0
     boundary = left
   [../]
   [./left_1]
-    type = FVVacuumBC
+    type = PenaltyBC
     variable = group_1
     boundary = left
   [../]
   [./right_1]
-    type = FVVacuumBC
+    type = PenaltyBC
     variable = group_1
     boundary = right
   [../]
@@ -121,7 +120,7 @@
 [UserObjects]
   [./normalizer]
     type = SolutionNormalizer
-    execute_on = 'custom initial'
+    execute_on = 'TIMESTEP_END initial'
     k = k
   [../]
 []
@@ -137,9 +136,10 @@
   type = Transient
   num_steps = 20
   solve_type = NEWTON
-  petsc_options_iname = -pc_type
-  petsc_options_value = lu
-  l_tol = 1e-9
+  petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'hypre boomeramg'
+  l_tol = 1e-6
+  nl_rel_tol = 1e-5
 []
 
 [Outputs]

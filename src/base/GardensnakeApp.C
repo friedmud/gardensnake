@@ -10,6 +10,7 @@
 
 // BCs
 #include "FVVacuumBC.h"
+#include "PenaltyBC.h"
 
 // Materials
 #include "XSMaterial.h"
@@ -67,6 +68,7 @@ GardensnakeApp::registerObjects(Factory & factory)
   registerKernel(Fission);
 
   registerBoundaryCondition(FVVacuumBC);
+  registerBoundaryCondition(PenaltyBC);
 
   registerMaterial(XSMaterial);
 
