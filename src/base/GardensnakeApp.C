@@ -21,6 +21,9 @@
 // Postprocessors
 #include "IntegratedFissionRatePostprocessor.h"
 #include "KEigenvalue.h"
+#include "PostprocessorRelativeChange.h"
+#include "FissionSourceRMSFractionalChange.h"
+#include "TotalFluxRMSFractionalChange.h"
 
 // UserObjects
 #include "SolutionNormalizer.h"
@@ -76,6 +79,9 @@ GardensnakeApp::registerObjects(Factory & factory)
 
   registerPostprocessor(IntegratedFissionRatePostprocessor);
   registerPostprocessor(KEigenvalue);
+  registerPostprocessor(PostprocessorRelativeChange);
+  registerPostprocessor(FissionSourceRMSFractionalChange);
+  registerPostprocessor(TotalFluxRMSFractionalChange);
 
   registerUserObject(SolutionNormalizer);
 }

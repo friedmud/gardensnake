@@ -123,6 +123,16 @@
     new = false
     fluxes = 'group_0 group_1'
   [../]
+  [./fission_change]
+    type = FissionSourceRMSFractionalChange
+    variable = group_0 # have to pick one
+    fluxes = 'group_0 group_1'
+  [../]
+  [./flux_change]
+    type = TotalFluxRMSFractionalChange
+    variable = group_0 # Have to pick one
+    fluxes = 'group_0 group_1'
+  [../]
 []
 
 [UserObjects]
@@ -130,6 +140,10 @@
     type = SolutionNormalizer
     execute_on = 'timestep_end initial'
     k = k
+  [../]
+  [./terminator]
+    type = Terminator
+    expression = '(fission_change < 1e-7) & (flux_change < 1e-5)'
   [../]
 []
 
@@ -142,7 +156,7 @@
 
 [Executioner]
   type = Transient
-  num_steps = 100
+  num_steps = 1000
   solve_type = NEWTON
   petsc_options_iname = -pc_type
   petsc_options_value = lu
