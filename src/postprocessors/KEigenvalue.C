@@ -21,6 +21,7 @@ InputParameters validParams<KEigenvalue>()
   InputParameters params = validParams<GeneralPostprocessor>();
 
   params.addParam<PostprocessorName>("fission_rate", "The Postprocessor that is computing the integrated fission rate");
+  params.addParam<PostprocessorName>("fission_rate_old", "The Postprocessor that is computing the integrated fission rate with the old flux");
 
   return params;
 }
@@ -28,7 +29,7 @@ InputParameters validParams<KEigenvalue>()
 KEigenvalue::KEigenvalue(const std::string & name, InputParameters parameters) :
     GeneralPostprocessor(name, parameters),
     _fission_rate(getPostprocessorValue("fission_rate")),
-    _fission_rate_old(getPostprocessorValueOld("fission_rate")),
+    _fission_rate_old(getPostprocessorValue("fission_rate_old")),
     _old_eigenvalue(getPostprocessorValueOldByName(name))
 {}
 
@@ -40,7 +41,12 @@ KEigenvalue::getValue()
   if (_t_step == 0)
     return 1.0;
 
+  std::cout<<"_fission_rate "<<_fission_rate<<std::endl;
   std::cout<<"_fission_rate_old "<<_fission_rate_old<<std::endl;
+  std::cout<<"_old_eigenvalue "<<_old_eigenvalue<<std::endl;
+
+  std::cout<<"new eigen "<<(_fission_rate / _fission_rate_old) * _old_eigenvalue<<std::endl;
+
 
   return (_fission_rate / _fission_rate_old) * _old_eigenvalue;
 }

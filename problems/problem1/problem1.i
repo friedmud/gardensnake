@@ -10,12 +10,12 @@
   [./group_0]
     order = CONSTANT
     family = MONOMIAL
-    initial_condition = 0.0912871
+    initial_condition = 1
   [../]
   [./group_1]
     order = CONSTANT
     family = MONOMIAL
-    initial_condition = 0.0912871
+    initial_condition = 1 # 0.0912871
   [../]
 []
 
@@ -109,19 +109,26 @@
   [./fission_rate]
     type = IntegratedFissionRatePostprocessor
     execute_on = 'TIMESTEP_END initial'
+    new = true
     fluxes = 'group_0 group_1'
   [../]
   [./k]
     type = KEigenvalue
     execute_on = 'TIMESTEP_END initial'
     fission_rate = fission_rate
+    fission_rate_old = fission_rate_old
+  [../]
+  [./fission_rate_old]
+    type = IntegratedFissionRatePostprocessor
+    new = false
+    fluxes = 'group_0 group_1'
   [../]
 []
 
 [UserObjects]
   [./normalizer]
     type = SolutionNormalizer
-    execute_on = 'custom initial'
+    execute_on = 'timestep_end initial'
     k = k
   [../]
 []
@@ -135,11 +142,12 @@
 
 [Executioner]
   type = Transient
-  num_steps = 20
+  num_steps = 100
   solve_type = NEWTON
   petsc_options_iname = -pc_type
   petsc_options_value = lu
   l_tol = 1e-9
+  line_search = none
 []
 
 [Outputs]

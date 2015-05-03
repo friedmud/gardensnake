@@ -69,7 +69,7 @@ XSMaterial::XSMaterial(const std::string & name, InputParameters parameters) :
     _zone.sigma_a[0] = a0[i];
     _zone.sigma_a[1] = a1[i];
 
-    _zone.sigma_s[0][1] = -s0_1[i]; // Loss
+    _zone.sigma_s[0][0] = -s0_1[i]; // Loss
     _zone.sigma_s[1][0] = s0_1[i]; // Gain
 
     _zone.nu_sigma_f[0] = nf0[i];

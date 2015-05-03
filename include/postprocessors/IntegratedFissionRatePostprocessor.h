@@ -34,6 +34,8 @@ public:
 protected:
   virtual Real computeQpIntegral();
 
+  bool _new;
+
   MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes

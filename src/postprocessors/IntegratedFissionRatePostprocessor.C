@@ -21,11 +21,14 @@ InputParameters validParams<IntegratedFissionRatePostprocessor>()
 
   params.addRequiredCoupledVar("fluxes", "All of the fluxes");
 
+  params.addRequiredParam<bool>("new", "Whether or not to compute the new fission rate.  ie if 'false' then compute the old fission rate");
+
   return params;
 }
 
 IntegratedFissionRatePostprocessor::IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters) :
     ElementIntegralPostprocessor(name, parameters),
+    _new(getParam<bool>("new")),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
 {
   unsigned int n = coupledComponents("fluxes");
@@ -33,7 +36,12 @@ IntegratedFissionRatePostprocessor::IntegratedFissionRatePostprocessor(const std
   _vals.resize(n);
 
   for (unsigned int i=0; i<_vals.size(); ++i)
-    _vals[i] = &coupledValue("fluxes", i);
+  {
+    if (_new)
+      _vals[i] = &coupledValue("fluxes", i);
+    else
+      _vals[i] = &coupledValueOld("fluxes", i);
+  }
 }
 
 Real
