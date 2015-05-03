@@ -54,6 +54,9 @@ FissionSourceRMSFractionalChange::computeQpIntegral()
 
   Real change = (fission_rate - fission_rate_old) / fission_rate;
 
+  if (isnan(change))
+    return 0;
+
   return change*change;
 }
 
