@@ -27,20 +27,18 @@ InputParameters validParams<XSMaterial>()
   params.addRequiredParam<std::vector<Real> >("nf0", "Fission XS for group 0");
   params.addRequiredParam<std::vector<Real> >("nf1", "Fission XS for group 1");
 
-  params.addRequiredParam<std::vector<Real> >("zone_edges", "The beginning and ending of each zone");
-  params.addRequiredParam<std::vector<Real> >("zones", "Each zone should go with with pair of zone_edges. ie there should be one more zone_edge than zones");
+  params.addRequiredCoupledVar("zone", "A variable holding an integer for each element that specifies which 'zone' that element is part of");
 
   return params;
 }
 
 XSMaterial::XSMaterial(const std::string & name, InputParameters parameters) :
     Material(name, parameters),
+    _current_zone(coupledValue("zone")),
     _diffusivity(declareProperty<std::vector<Real> >("diffusivity")),
     _sigma_a(declareProperty<std::vector<Real> >("sigma_a")),
     _sigma_s(declareProperty<std::vector<std::vector<Real> > >("sigma_s")),
-    _nu_sigma_f(declareProperty<std::vector<Real> >("nu_sigma_f")),
-    _zone_edges(getParam<std::vector<Real> >("zone_edges")),
-    _zone_numbers(getParam<std::vector<Real> >("zones"))
+    _nu_sigma_f(declareProperty<std::vector<Real> >("nu_sigma_f"))
 {
   const std::vector<Real> & d0 = getParam<std::vector<Real> >("d0");
   const std::vector<Real> & d1 = getParam<std::vector<Real> >("d1");
@@ -85,16 +83,7 @@ XSMaterial::XSMaterial(const std::string & name, InputParameters parameters) :
 void
 XSMaterial::computeQpProperties()
 {
-  // Snag the x position of the center of this element
-  Real x = _current_elem->centroid()(0);
-
-  // Find the zone we fall in:
-  unsigned int zone_entry = 0;
-  for (; zone_entry<_zone_edges.size()-1; zone_entry++)
-    if (_zone_edges[zone_entry] <= x && x <= _zone_edges[zone_entry+1])
-      break;
-
-  Zone & zone = _zones[_zone_numbers[zone_entry]];
+  Zone & zone = _zones[(unsigned int)_current_zone[_qp]];
 
   _diffusivity[_qp] = zone.diffusivity;
   _sigma_a[_qp] = zone.sigma_a;

@@ -14,6 +14,9 @@
 // Materials
 #include "XSMaterial.h"
 
+// AuxKernels
+#include "ZoneAux.h"
+
 // DGKernels
 #include "FVNeutronDiffusion.h"
 
@@ -71,6 +74,8 @@ GardensnakeApp::registerObjects(Factory & factory)
   registerBoundaryCondition(PenaltyBC);
 
   registerMaterial(XSMaterial);
+
+  registerAux(ZoneAux);
 
   registerDGKernel(FVNeutronDiffusion);
 

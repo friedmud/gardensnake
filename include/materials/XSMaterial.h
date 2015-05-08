@@ -32,6 +32,8 @@ public:
 protected:
   virtual void computeQpProperties();
 
+  VariableValue & _current_zone;
+
   class Zone
   {
   public:
@@ -55,12 +57,6 @@ protected:
 
   /// Fission XS for each group
   MaterialProperty<std::vector<Real> > & _nu_sigma_f;
-
-  /// Edges of each zone
-  const std::vector<Real> & _zone_edges;
-
-  /// Each zone that goes with the zone_edges
-  const std::vector<Real> & _zone_numbers;
 };
 
 #endif //XSMATERIAL_H
