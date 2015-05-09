@@ -128,6 +128,8 @@
     execute_on = 'TIMESTEP_END initial'
     new = true
     fluxes = 'group_0 group_1'
+    zone = zone
+    active_zones = '0 1 2 3'
   [../]
   [./k]
     type = KEigenvalue
@@ -139,11 +141,15 @@
     type = IntegratedFissionRatePostprocessor
     new = false
     fluxes = 'group_0 group_1'
+    zone = zone
+    active_zones = '0 1 2 3'
   [../]
   [./fission_change]
     type = FissionSourceRMSFractionalChange
     variable = group_0 # have to pick one
     fluxes = 'group_0 group_1'
+    zone = zone
+    active_zones = '0 1 2 3'
   [../]
   [./flux_change]
     type = TotalFluxRMSFractionalChange

@@ -15,7 +15,7 @@
 #ifndef INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
 #define INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "ZoneElementIntegralPostprocessor.h"
 
 //Forward Declarations
 class IntegratedFissionRatePostprocessor;
@@ -26,7 +26,7 @@ InputParameters validParams<IntegratedFissionRatePostprocessor>();
 /**
  * This postprocessor computes the volume of a specified block.
  */
-class IntegratedFissionRatePostprocessor : public ElementIntegralPostprocessor
+class IntegratedFissionRatePostprocessor : public ZoneElementIntegralPostprocessor
 {
 public:
   IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters);

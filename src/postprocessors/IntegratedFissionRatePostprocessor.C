@@ -17,7 +17,7 @@
 template<>
 InputParameters validParams<IntegratedFissionRatePostprocessor>()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = validParams<ZoneElementIntegralPostprocessor>();
 
   params.addRequiredCoupledVar("fluxes", "All of the fluxes");
 
@@ -27,7 +27,7 @@ InputParameters validParams<IntegratedFissionRatePostprocessor>()
 }
 
 IntegratedFissionRatePostprocessor::IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters) :
-    ElementIntegralPostprocessor(name, parameters),
+    ZoneElementIntegralPostprocessor(name, parameters),
     _new(getParam<bool>("new")),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
 {

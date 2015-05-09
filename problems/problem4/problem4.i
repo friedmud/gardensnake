@@ -81,6 +81,7 @@
     variable = zone
     zones = '4 3 2 3 4'
     zone_edges = '0 25 40 260 275 300'
+    execute_on = 'initial'
   [../]
 []
 
@@ -119,6 +120,8 @@
     d0 = '1.4300 1.4300 1.4300 1.4300 1.2600 1.0000 1.5500'
     d1 = '0.3700 0.3700 0.3700 0.3700 0.2700 0.3400 0.2700'
     zone = zone
+    zones = '4 3 2 3 4'
+    zone_edges = '0 25 40 260 275 300'
   [../]
 []
 
@@ -128,6 +131,8 @@
     execute_on = 'TIMESTEP_END initial'
     new = true
     fluxes = 'group_0 group_1'
+    zone =  zone
+    active_zones = '0 1 2 3'
   [../]
   [./k]
     type = KEigenvalue
@@ -139,11 +144,15 @@
     type = IntegratedFissionRatePostprocessor
     new = false
     fluxes = 'group_0 group_1'
+    zone =  zone
+    active_zones = '0 1 2 3'
   [../]
   [./fission_change]
     type = FissionSourceRMSFractionalChange
     variable = group_0 # have to pick one
     fluxes = 'group_0 group_1'
+    zone =  zone
+    active_zones = '0 1 2 3'
   [../]
   [./flux_change]
     type = TotalFluxRMSFractionalChange

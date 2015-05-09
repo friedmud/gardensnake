@@ -17,7 +17,7 @@
 template<>
 InputParameters validParams<FissionSourceRMSFractionalChange>()
 {
-  InputParameters params = validParams<ElementAverageValue>();
+  InputParameters params = validParams<ZoneElementAverageValue>();
 
   params.addRequiredCoupledVar("fluxes", "The fluxes");
 
@@ -25,7 +25,7 @@ InputParameters validParams<FissionSourceRMSFractionalChange>()
 }
 
 FissionSourceRMSFractionalChange::FissionSourceRMSFractionalChange(const std::string & name, InputParameters parameters) :
-    ElementAverageValue(name, parameters),
+    ZoneElementAverageValue(name, parameters),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
 {
   unsigned int n = coupledComponents("fluxes");
@@ -63,7 +63,7 @@ FissionSourceRMSFractionalChange::computeQpIntegral()
 Real
 FissionSourceRMSFractionalChange::getValue()
 {
-  Real mean = ElementAverageValue::getValue();
+  Real mean = ZoneElementAverageValue::getValue();
 
   return std::sqrt(mean);
 }

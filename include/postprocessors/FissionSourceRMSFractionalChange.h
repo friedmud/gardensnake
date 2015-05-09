@@ -15,7 +15,7 @@
 #ifndef FISSIONSOURCERMSFRACTIONALCHANGE_H
 #define FISSIONSOURCERMSFRACTIONALCHANGE_H
 
-#include "ElementAverageValue.h"
+#include "ZoneElementAverageValue.h"
 
 //Forward Declarations
 class FissionSourceRMSFractionalChange;
@@ -23,7 +23,7 @@ class FissionSourceRMSFractionalChange;
 template<>
 InputParameters validParams<FissionSourceRMSFractionalChange>();
 
-class FissionSourceRMSFractionalChange : public ElementAverageValue
+class FissionSourceRMSFractionalChange : public ZoneElementAverageValue
 {
 public:
   FissionSourceRMSFractionalChange(const std::string & name, InputParameters parameters);
