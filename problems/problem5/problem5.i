@@ -156,6 +156,22 @@
     variable = group_0 # Have to pick one
     fluxes = 'group_0 group_1'
   [../]
+  [./peak]
+    type = PeakFissionSource
+    active_zones = '0 1 2 3'
+    zone = zone
+    report = NORMALIZED_VALUE
+    fluxes = 'group_0 group_1'
+    center = 150
+  [../]
+  [./peak_position]
+    type = PeakFissionSource
+    active_zones = '0 1 2 3'
+    zone = zone
+    report = position
+    fluxes = 'group_0 group_1'
+    center = 150
+  [../]
 []
 
 [UserObjects]

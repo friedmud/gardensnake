@@ -26,6 +26,7 @@
 #include "PostprocessorRelativeChange.h"
 #include "FissionSourceRMSFractionalChange.h"
 #include "TotalFluxRMSFractionalChange.h"
+#include "PeakFissionSource.h"
 
 // UserObjects
 #include "SolutionNormalizer.h"
@@ -84,6 +85,7 @@ GardensnakeApp::registerObjects(Factory & factory)
   registerPostprocessor(PostprocessorRelativeChange);
   registerPostprocessor(FissionSourceRMSFractionalChange);
   registerPostprocessor(TotalFluxRMSFractionalChange);
+  registerPostprocessor(PeakFissionSource);
 
   registerUserObject(SolutionNormalizer);
 }

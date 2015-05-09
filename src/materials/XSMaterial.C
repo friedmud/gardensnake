@@ -29,9 +29,6 @@ InputParameters validParams<XSMaterial>()
 
   params.addRequiredCoupledVar("zone", "A variable holding an integer for each element that specifies which 'zone' that element is part of");
 
-  params.addRequiredParam<std::vector<Real> >("zone_edges", "The beginning and ending of each zone");
-  params.addRequiredParam<std::vector<Real> >("zones", "Each zone should go with with pair of zone_edges. ie there should be one more zone_edge than zones");
-
   return params;
 }
 
@@ -41,9 +38,7 @@ XSMaterial::XSMaterial(const std::string & name, InputParameters parameters) :
     _diffusivity(declareProperty<std::vector<Real> >("diffusivity")),
     _sigma_a(declareProperty<std::vector<Real> >("sigma_a")),
     _sigma_s(declareProperty<std::vector<std::vector<Real> > >("sigma_s")),
-    _nu_sigma_f(declareProperty<std::vector<Real> >("nu_sigma_f")),
-    _zone_edges(getParam<std::vector<Real> >("zone_edges")),
-    _zone_numbers(getParam<std::vector<Real> >("zones"))
+    _nu_sigma_f(declareProperty<std::vector<Real> >("nu_sigma_f"))
 {
   const std::vector<Real> & d0 = getParam<std::vector<Real> >("d0");
   const std::vector<Real> & d1 = getParam<std::vector<Real> >("d1");
