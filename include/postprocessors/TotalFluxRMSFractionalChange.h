@@ -26,7 +26,7 @@ InputParameters validParams<TotalFluxRMSFractionalChange>();
 class TotalFluxRMSFractionalChange : public ElementAverageValue
 {
 public:
-  TotalFluxRMSFractionalChange(const std::string & name, InputParameters parameters);
+  TotalFluxRMSFractionalChange(const InputParameters & parameters);
   virtual Real getValue();
 
 protected:

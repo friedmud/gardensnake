@@ -31,7 +31,7 @@ class FVVacuumBC : public IntegratedBC
 {
 public:
 
-  FVVacuumBC(const std::string & name, InputParameters parameters);
+  FVVacuumBC(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -39,7 +39,7 @@ protected:
 
   const unsigned int _group;
 
-  MaterialProperty<std::vector<Real> > & _diffusivity;
+  const MaterialProperty<std::vector<Real> > & _diffusivity;
 };
 
 #endif //FVVACUUMBC_H

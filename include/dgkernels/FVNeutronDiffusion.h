@@ -26,7 +26,7 @@ InputParameters validParams<FVNeutronDiffusion>();
 class FVNeutronDiffusion : public DGKernel
 {
 public:
-  FVNeutronDiffusion(const std::string & name, InputParameters parameters);
+  FVNeutronDiffusion(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual(Moose::DGResidualType type);
@@ -34,8 +34,8 @@ protected:
 
   const unsigned int _group;
 
-  MaterialProperty<std::vector<Real> > & _diffusivity;
-  MaterialProperty<std::vector<Real> > & _diffusivity_neighbor;
+  const MaterialProperty<std::vector<Real> > & _diffusivity;
+  const MaterialProperty<std::vector<Real> > & _diffusivity_neighbor;
 };
 
 #endif

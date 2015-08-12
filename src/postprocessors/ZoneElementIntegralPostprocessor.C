@@ -26,8 +26,8 @@ InputParameters validParams<ZoneElementIntegralPostprocessor>()
   return params;
 }
 
-ZoneElementIntegralPostprocessor::ZoneElementIntegralPostprocessor(const std::string & name, InputParameters parameters) :
-    ElementPostprocessor(name, parameters),
+ZoneElementIntegralPostprocessor::ZoneElementIntegralPostprocessor(const InputParameters & parameters) :
+    ElementPostprocessor(parameters),
     _qp(0),
     _integral_value(0),
     _zone(coupledValue("zone")),

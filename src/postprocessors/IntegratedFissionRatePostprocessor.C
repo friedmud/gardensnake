@@ -26,8 +26,8 @@ InputParameters validParams<IntegratedFissionRatePostprocessor>()
   return params;
 }
 
-IntegratedFissionRatePostprocessor::IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters) :
-    ZoneElementIntegralPostprocessor(name, parameters),
+IntegratedFissionRatePostprocessor::IntegratedFissionRatePostprocessor(const InputParameters & parameters) :
+    ZoneElementIntegralPostprocessor(parameters),
     _new(getParam<bool>("new")),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
 {

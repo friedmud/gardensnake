@@ -25,8 +25,8 @@ InputParameters validParams<ZoneAux>()
   return params;
 }
 
-ZoneAux::ZoneAux(const std::string & name, InputParameters parameters) :
-    AuxKernel(name, parameters),
+ZoneAux::ZoneAux(const InputParameters & parameters) :
+    AuxKernel(parameters),
     _zone_edges(getParam<std::vector<Real> >("zone_edges")),
     _zone_numbers(getParam<std::vector<Real> >("zones"))
 {

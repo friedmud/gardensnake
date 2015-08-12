@@ -27,8 +27,8 @@ InputParameters validParams<Fission>()
 }
 
 
-Fission::Fission(const std::string & name, InputParameters parameters) :
-    Kernel(name, parameters),
+Fission::Fission(const InputParameters & parameters) :
+    Kernel(parameters),
     _group(_var.number()),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f")),
     _k(getPostprocessorValue("k"))

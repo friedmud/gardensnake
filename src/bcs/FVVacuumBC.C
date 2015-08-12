@@ -21,8 +21,8 @@ InputParameters validParams<FVVacuumBC>()
   return params;
 }
 
-FVVacuumBC::FVVacuumBC(const std::string & name, InputParameters parameters) :
-    IntegratedBC(name, parameters),
+FVVacuumBC::FVVacuumBC(const InputParameters & parameters) :
+    IntegratedBC(parameters),
     _group(_var.number()),
     _diffusivity(getMaterialProperty<std::vector<Real> >("diffusivity"))
 {}

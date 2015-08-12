@@ -26,7 +26,7 @@ InputParameters validParams<ZoneElementIntegralPostprocessor>();
 class ZoneElementIntegralPostprocessor : public ElementPostprocessor
 {
 public:
-  ZoneElementIntegralPostprocessor(const std::string & name, InputParameters parameters);
+  ZoneElementIntegralPostprocessor(const InputParameters & parameters);
 
   virtual void initialize();
   virtual void execute();

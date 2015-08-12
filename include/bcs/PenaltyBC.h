@@ -26,7 +26,7 @@ InputParameters validParams<PenaltyBC>();
 class PenaltyBC : public IntegratedBC
 {
 public:
-  PenaltyBC(const std::string & name, InputParameters parameters);
+  PenaltyBC(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

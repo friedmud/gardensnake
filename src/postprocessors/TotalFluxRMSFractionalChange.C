@@ -24,8 +24,8 @@ InputParameters validParams<TotalFluxRMSFractionalChange>()
   return params;
 }
 
-TotalFluxRMSFractionalChange::TotalFluxRMSFractionalChange(const std::string & name, InputParameters parameters) :
-    ElementAverageValue(name, parameters)
+TotalFluxRMSFractionalChange::TotalFluxRMSFractionalChange(const InputParameters & parameters) :
+    ElementAverageValue(parameters)
 {
   unsigned int n = coupledComponents("fluxes");
 

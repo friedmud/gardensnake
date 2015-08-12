@@ -26,7 +26,7 @@ InputParameters validParams<Scattering>();
 class Scattering : public Kernel
 {
 public:
-  Scattering(const std::string & name, InputParameters parameters);
+  Scattering(const InputParameters & parameters);
   virtual ~Scattering();
 
 protected:
@@ -36,7 +36,7 @@ protected:
 
   const unsigned int _group;
 
-  MaterialProperty<std::vector<std::vector<Real> > > & _sigma_s;
+  const MaterialProperty<std::vector<std::vector<Real> > > & _sigma_s;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _vals;

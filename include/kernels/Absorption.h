@@ -26,7 +26,7 @@ InputParameters validParams<Absorption>();
 class Absorption : public Kernel
 {
 public:
-  Absorption(const std::string & name, InputParameters parameters);
+  Absorption(const InputParameters & parameters);
   virtual ~Absorption();
 
 protected:
@@ -35,7 +35,7 @@ protected:
 
   const unsigned int _group;
 
-  MaterialProperty<std::vector<Real> > & _sigma_a;
+  const MaterialProperty<std::vector<Real> > & _sigma_a;
 };
 
 

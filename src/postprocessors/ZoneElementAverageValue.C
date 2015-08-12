@@ -21,8 +21,8 @@ InputParameters validParams<ZoneElementAverageValue>()
   return params;
 }
 
-ZoneElementAverageValue::ZoneElementAverageValue(const std::string & name, InputParameters parameters) :
-    ZoneElementIntegralPostprocessor(name, parameters),
+ZoneElementAverageValue::ZoneElementAverageValue(const InputParameters & parameters) :
+    ZoneElementIntegralPostprocessor(parameters),
     _volume(0)
 {}
 

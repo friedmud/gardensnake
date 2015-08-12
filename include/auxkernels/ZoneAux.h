@@ -35,7 +35,7 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  ZoneAux(const std::string & name, InputParameters parameters);
+  ZoneAux(const InputParameters & parameters);
 
   virtual ~ZoneAux() {}
 

@@ -30,8 +30,8 @@ InputParameters validParams<PeakFissionSource>()
   return params;
 }
 
-PeakFissionSource::PeakFissionSource(const std::string & name, InputParameters parameters) :
-    ZoneElementAverageValue(name, parameters),
+PeakFissionSource::PeakFissionSource(const InputParameters & parameters) :
+    ZoneElementAverageValue(parameters),
     _report(getParam<MooseEnum>("report")),
     _center(getParam<Real>("center")),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))

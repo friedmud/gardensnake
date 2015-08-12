@@ -26,7 +26,7 @@ InputParameters validParams<PeakFissionSource>();
 class PeakFissionSource : public ZoneElementAverageValue
 {
 public:
-  PeakFissionSource(const std::string & name, InputParameters parameters);
+  PeakFissionSource(const InputParameters & parameters);
 
   virtual void initialize();
   virtual Real getValue();
@@ -39,7 +39,7 @@ protected:
 
   const Real & _center;
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _fluxes;

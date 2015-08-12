@@ -26,7 +26,7 @@ InputParameters validParams<KEigenvalue>();
 class KEigenvalue : public GeneralPostprocessor
 {
 public:
-  KEigenvalue(const std::string & name, InputParameters parameters);
+  KEigenvalue(const InputParameters & parameters);
 
   virtual void initialize() {}
   virtual void execute() {}

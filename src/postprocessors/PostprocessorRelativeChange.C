@@ -25,8 +25,8 @@ InputParameters validParams<PostprocessorRelativeChange>()
   return params;
 }
 
-PostprocessorRelativeChange::PostprocessorRelativeChange(const std::string & name, InputParameters parameters) :
-    GeneralPostprocessor(name, parameters),
+PostprocessorRelativeChange::PostprocessorRelativeChange(const InputParameters & parameters) :
+    GeneralPostprocessor(parameters),
     _pp(getPostprocessorValue("pp")),
     _pp_old(getPostprocessorValueOld("pp"))
 {}

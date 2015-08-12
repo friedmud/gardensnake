@@ -26,11 +26,11 @@ InputParameters validParams<KEigenvalue>()
   return params;
 }
 
-KEigenvalue::KEigenvalue(const std::string & name, InputParameters parameters) :
-    GeneralPostprocessor(name, parameters),
+KEigenvalue::KEigenvalue(const InputParameters & parameters) :
+    GeneralPostprocessor(parameters),
     _fission_rate(getPostprocessorValue("fission_rate")),
     _fission_rate_old(getPostprocessorValue("fission_rate_old")),
-    _old_eigenvalue(getPostprocessorValueOldByName(name))
+    _old_eigenvalue(getPostprocessorValueOldByName(name()))
 {}
 
 Real
