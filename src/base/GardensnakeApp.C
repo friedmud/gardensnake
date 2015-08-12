@@ -41,8 +41,8 @@ InputParameters validParams<GardensnakeApp>()
   return params;
 }
 
-GardensnakeApp::GardensnakeApp(const std::string & name, InputParameters parameters) :
-    MooseApp(name, parameters)
+GardensnakeApp::GardensnakeApp(InputParameters parameters) :
+    MooseApp(parameters)
 {
   srand(processor_id());
 

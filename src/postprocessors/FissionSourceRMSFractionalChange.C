@@ -24,8 +24,8 @@ InputParameters validParams<FissionSourceRMSFractionalChange>()
   return params;
 }
 
-FissionSourceRMSFractionalChange::FissionSourceRMSFractionalChange(const std::string & name, InputParameters parameters) :
-    ZoneElementAverageValue(name, parameters),
+FissionSourceRMSFractionalChange::FissionSourceRMSFractionalChange(const InputParameters & parameters) :
+    ZoneElementAverageValue(parameters),
     _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
 {
   unsigned int n = coupledComponents("fluxes");

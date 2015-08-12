@@ -24,8 +24,8 @@ InputParameters validParams<SolutionNormalizer>()
   return params;
 }
 
-SolutionNormalizer::SolutionNormalizer(const std::string & name, InputParameters parameters) :
-    GeneralUserObject(name, parameters)
+SolutionNormalizer::SolutionNormalizer(const InputParameters & parameters) :
+    GeneralUserObject(parameters)
 {
   // We don't actually need to store it.... just try to get it to create the dependency.
   getPostprocessorValue("k");

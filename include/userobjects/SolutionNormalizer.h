@@ -31,7 +31,7 @@ class SolutionNormalizer :
   public GeneralUserObject
 {
 public:
-  SolutionNormalizer(const std::string & name, InputParameters parameters);
+  SolutionNormalizer(const InputParameters & parameters);
 
   virtual ~SolutionNormalizer() {}
   virtual void initialize(){}

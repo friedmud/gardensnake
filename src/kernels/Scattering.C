@@ -26,8 +26,8 @@ InputParameters validParams<Scattering>()
 }
 
 
-Scattering::Scattering(const std::string & name, InputParameters parameters) :
-    Kernel(name, parameters),
+Scattering::Scattering(const InputParameters & parameters) :
+    Kernel(parameters),
     _group(_var.number()),
     _sigma_s(getMaterialProperty<std::vector<std::vector<Real> > >("sigma_s"))
 {

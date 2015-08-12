@@ -27,7 +27,7 @@ InputParameters validParams<XSMaterial>();
 class XSMaterial : public Material
 {
 public:
-  XSMaterial(const std::string & name, InputParameters parameters);
+  XSMaterial(const InputParameters & parameters);
 
 protected:
   virtual void computeQpProperties();

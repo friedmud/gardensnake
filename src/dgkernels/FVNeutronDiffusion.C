@@ -23,8 +23,8 @@ InputParameters validParams<FVNeutronDiffusion>()
   return params;
 }
 
-FVNeutronDiffusion::FVNeutronDiffusion(const std::string & name, InputParameters parameters) :
-    DGKernel(name, parameters),
+FVNeutronDiffusion::FVNeutronDiffusion(const InputParameters & parameters) :
+    DGKernel(parameters),
     _group(_var.number()),
     _diffusivity(getMaterialProperty<std::vector<Real> >("diffusivity")),
     _diffusivity_neighbor(getNeighborMaterialProperty<std::vector<Real> >("diffusivity"))

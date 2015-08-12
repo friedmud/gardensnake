@@ -29,14 +29,14 @@ InputParameters validParams<IntegratedFissionRatePostprocessor>();
 class IntegratedFissionRatePostprocessor : public ZoneElementIntegralPostprocessor
 {
 public:
-  IntegratedFissionRatePostprocessor(const std::string & name, InputParameters parameters);
+  IntegratedFissionRatePostprocessor(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();
 
   bool _new;
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _vals;

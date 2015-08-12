@@ -26,7 +26,7 @@ InputParameters validParams<PostprocessorRelativeChange>();
 class PostprocessorRelativeChange : public GeneralPostprocessor
 {
 public:
-  PostprocessorRelativeChange(const std::string & name, InputParameters parameters);
+  PostprocessorRelativeChange(const InputParameters & parameters);
 
   virtual void initialize() {}
   virtual void execute() {}

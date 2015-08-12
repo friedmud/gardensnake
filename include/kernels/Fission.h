@@ -26,7 +26,7 @@ InputParameters validParams<Fission>();
 class Fission : public Kernel
 {
 public:
-  Fission(const std::string & name, InputParameters parameters);
+  Fission(const InputParameters & parameters);
   virtual ~Fission();
 
 protected:
@@ -36,12 +36,12 @@ protected:
 
   const unsigned int _group;
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _vals;
 
-  PostprocessorValue & _k;
+  const PostprocessorValue & _k;
 };
 
 

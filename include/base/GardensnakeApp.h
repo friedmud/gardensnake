@@ -11,7 +11,7 @@ InputParameters validParams<GardensnakeApp>();
 class GardensnakeApp : public MooseApp
 {
 public:
-  GardensnakeApp(const std::string & name, InputParameters parameters);
+  GardensnakeApp(InputParameters parameters);
   virtual ~GardensnakeApp();
 
   static void registerApps();

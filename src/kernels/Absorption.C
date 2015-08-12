@@ -24,8 +24,8 @@ InputParameters validParams<Absorption>()
 }
 
 
-Absorption::Absorption(const std::string & name, InputParameters parameters) :
-    Kernel(name, parameters),
+Absorption::Absorption(const InputParameters & parameters) :
+    Kernel(parameters),
     _group(_var.number()),
     _sigma_a(getMaterialProperty<std::vector<Real> >("sigma_a"))
 {

@@ -26,13 +26,13 @@ InputParameters validParams<FissionSourceRMSFractionalChange>();
 class FissionSourceRMSFractionalChange : public ZoneElementAverageValue
 {
 public:
-  FissionSourceRMSFractionalChange(const std::string & name, InputParameters parameters);
+  FissionSourceRMSFractionalChange(const InputParameters & parameters);
   virtual Real getValue();
 
 protected:
   virtual Real computeQpIntegral();
 
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<VariableValue *> _fluxes;

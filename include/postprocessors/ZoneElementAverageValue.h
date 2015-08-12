@@ -26,7 +26,7 @@ InputParameters validParams<ZoneElementAverageValue>();
 class ZoneElementAverageValue : public ZoneElementIntegralPostprocessor
 {
 public:
-  ZoneElementAverageValue(const std::string & name, InputParameters parameters);
+  ZoneElementAverageValue(const InputParameters & parameters);
 
   virtual void initialize();
   virtual void execute();

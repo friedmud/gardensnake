@@ -32,8 +32,8 @@ InputParameters validParams<XSMaterial>()
   return params;
 }
 
-XSMaterial::XSMaterial(const std::string & name, InputParameters parameters) :
-    Material(name, parameters),
+XSMaterial::XSMaterial(const InputParameters & parameters) :
+    Material(parameters),
     _current_zone(coupledValue("zone")),
     _diffusivity(declareProperty<std::vector<Real> >("diffusivity")),
     _sigma_a(declareProperty<std::vector<Real> >("sigma_a")),

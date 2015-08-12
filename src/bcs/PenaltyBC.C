@@ -23,8 +23,8 @@ InputParameters validParams<PenaltyBC>()
   return params;
 }
 
-PenaltyBC::PenaltyBC(const std::string & name, InputParameters parameters) :
-  IntegratedBC(name, parameters),
+PenaltyBC::PenaltyBC(const InputParameters & parameters) :
+  IntegratedBC(parameters),
   _value(getParam<Real>("value")),
   _penalty(getParam<Real>("penalty"))
 {}
