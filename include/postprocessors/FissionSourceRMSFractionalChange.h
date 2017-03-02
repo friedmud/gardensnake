@@ -35,8 +35,8 @@ protected:
   const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
 
   // The values of all of the fluxes
-  std::vector<VariableValue *> _fluxes;
-  std::vector<VariableValue *> _fluxes_old;
+  std::vector<const VariableValue *> _fluxes;
+  std::vector<const VariableValue *> _fluxes_old;
 };
 
 #endif

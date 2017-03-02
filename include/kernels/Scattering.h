@@ -39,7 +39,7 @@ protected:
   const MaterialProperty<std::vector<std::vector<Real> > > & _sigma_s;
 
   // The values of all of the fluxes
-  std::vector<VariableValue *> _vals;
+  std::vector<const VariableValue *> _vals;
 };
 
 

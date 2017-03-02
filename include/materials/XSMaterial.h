@@ -32,7 +32,7 @@ public:
 protected:
   virtual void computeQpProperties();
 
-  VariableValue & _current_zone;
+  const VariableValue & _current_zone;
 
   class Zone
   {

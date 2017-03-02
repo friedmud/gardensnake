@@ -14,6 +14,8 @@
 
 #include "ZoneElementIntegralPostprocessor.h"
 
+#include "libmesh/quadrature.h"
+
 template<>
 InputParameters validParams<ZoneElementIntegralPostprocessor>()
 {

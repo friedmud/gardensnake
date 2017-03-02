@@ -41,7 +41,7 @@ protected:
 
   Real _integral_value;
 
-  VariableValue & _zone;
+  const VariableValue & _zone;
   const std::vector<unsigned int> & _active_zones;
 };
 

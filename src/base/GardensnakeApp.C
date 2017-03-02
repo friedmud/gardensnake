@@ -1,6 +1,7 @@
 #include "GardensnakeApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
+#include "MooseSyntax.h"
 
 // Kernels
 #include "Absorption.h"

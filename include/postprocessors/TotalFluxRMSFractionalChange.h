@@ -32,8 +32,8 @@ public:
 protected:
   virtual Real computeQpIntegral();
 
-  std::vector<VariableValue *> _fluxes;
-  std::vector<VariableValue *> _fluxes_old;
+  std::vector<const VariableValue *> _fluxes;
+  std::vector<const VariableValue *> _fluxes_old;
 };
 
 #endif
