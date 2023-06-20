@@ -11,7 +11,7 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef ABSORPTION_H
 #define ABSORPTION_H
 
@@ -19,14 +19,13 @@
 
 class Absorption;
 
-template<>
-InputParameters validParams<Absorption>();
-
-
 class Absorption : public Kernel
 {
 public:
+  static InputParameters validParams();
+
   Absorption(const InputParameters & parameters);
+
   virtual ~Absorption();
 
 protected:
@@ -35,8 +34,7 @@ protected:
 
   const unsigned int _group;
 
-  const MaterialProperty<std::vector<Real> > & _sigma_a;
+  const MaterialProperty<std::vector<Real>> & _sigma_a;
 };
-
 
 #endif /* ABSORPTION_H */

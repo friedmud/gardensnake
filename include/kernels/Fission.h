@@ -11,7 +11,7 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef FISSION_H
 #define FISSION_H
 
@@ -19,13 +19,12 @@
 
 class Fission;
 
-template<>
-InputParameters validParams<Fission>();
-
 
 class Fission : public Kernel
 {
 public:
+static InputParameters validParams();
+
   Fission(const InputParameters & parameters);
   virtual ~Fission();
 

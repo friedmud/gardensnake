@@ -11,21 +11,19 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef PENALTYBC_H
 #define PENALTYBC_H
 
 #include "IntegratedBC.h"
 
-
 class PenaltyBC;
-
-template<>
-InputParameters validParams<PenaltyBC>();
 
 class PenaltyBC : public IntegratedBC
 {
 public:
+  static InputParameters validParams();
+
   PenaltyBC(const InputParameters & parameters);
 
 protected:
@@ -36,5 +34,4 @@ protected:
   const Real & _penalty;
 };
 
-
-#endif //PENALTYBC_H
+#endif // PENALTYBC_H

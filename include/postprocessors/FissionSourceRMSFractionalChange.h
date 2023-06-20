@@ -11,28 +11,28 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef FISSIONSOURCERMSFRACTIONALCHANGE_H
 #define FISSIONSOURCERMSFRACTIONALCHANGE_H
 
 #include "ZoneElementAverageValue.h"
 
-//Forward Declarations
+// Forward Declarations
 class FissionSourceRMSFractionalChange;
-
-template<>
-InputParameters validParams<FissionSourceRMSFractionalChange>();
 
 class FissionSourceRMSFractionalChange : public ZoneElementAverageValue
 {
 public:
+  static InputParameters validParams();
+
   FissionSourceRMSFractionalChange(const InputParameters & parameters);
+
   virtual Real getValue();
 
 protected:
   virtual Real computeQpIntegral();
 
-  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real>> & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<const VariableValue *> _fluxes;

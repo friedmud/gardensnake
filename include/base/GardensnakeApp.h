@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef GARDENSNAKEAPP_H
 #define GARDENSNAKEAPP_H
 
@@ -5,13 +7,13 @@
 
 class GardensnakeApp;
 
-template<>
-InputParameters validParams<GardensnakeApp>();
-
 class GardensnakeApp : public MooseApp
 {
 public:
+  static InputParameters validParams();
+
   GardensnakeApp(InputParameters parameters);
+
   virtual ~GardensnakeApp();
 
   static void registerApps();

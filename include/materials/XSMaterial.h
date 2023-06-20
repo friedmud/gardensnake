@@ -11,22 +11,23 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef XSMATERIAL_H
 #define XSMATERIAL_H
 
 #include "Material.h"
 
-
-//Forward Declarations
+// Forward Declarations
 class XSMaterial;
 
-template<>
-InputParameters validParams<XSMaterial>();
+// template <>
+// InputParameters validParams<XSMaterial>();
 
 class XSMaterial : public Material
 {
 public:
+  static InputParameters validParams();
+
   XSMaterial(const InputParameters & parameters);
 
 protected:
@@ -40,23 +41,23 @@ protected:
     /// Indexed by group!
     std::vector<Real> diffusivity;
     std::vector<Real> sigma_a;
-    std::vector<std::vector<Real> > sigma_s;
+    std::vector<std::vector<Real>> sigma_s;
     std::vector<Real> nu_sigma_f;
   };
 
   std::vector<Zone> _zones;
 
   /// Diffusivity coefficient for each group
-  MaterialProperty<std::vector<Real> > & _diffusivity;
+  MaterialProperty<std::vector<Real>> & _diffusivity;
 
   /// Absorption XS for each group
-  MaterialProperty<std::vector<Real> > & _sigma_a;
+  MaterialProperty<std::vector<Real>> & _sigma_a;
 
   /// Scattering cross section (full matrix: column->row)
-  MaterialProperty<std::vector<std::vector<Real> > > & _sigma_s;
+  MaterialProperty<std::vector<std::vector<Real>>> & _sigma_s;
 
   /// Fission XS for each group
-  MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  MaterialProperty<std::vector<Real>> & _nu_sigma_f;
 };
 
-#endif //XSMATERIAL_H
+#endif // XSMATERIAL_H

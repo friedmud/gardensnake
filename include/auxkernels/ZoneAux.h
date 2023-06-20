@@ -11,18 +11,18 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
+#pragma once
 
 #ifndef ZONEAUX_H
 #define ZONEAUX_H
 
 #include "AuxKernel.h"
 
-
-//Forward Declarations
+// Forward Declarations
 class ZoneAux;
 
-template<>
-InputParameters validParams<ZoneAux>();
+// template <>
+// InputParameters validParams<ZoneAux>();
 
 /**
  * Constant auxiliary value
@@ -30,6 +30,7 @@ InputParameters validParams<ZoneAux>();
 class ZoneAux : public AuxKernel
 {
 public:
+  static InputParameters validParams();
 
   /**
    * Factory constructor, takes parameters so that all derived classes can be built using the same
@@ -49,4 +50,4 @@ protected:
   const std::vector<Real> & _zone_numbers;
 };
 
-#endif //ZONEAUX_H
+#endif // ZONEAUX_H

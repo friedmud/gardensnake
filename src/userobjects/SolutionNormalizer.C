@@ -13,19 +13,27 @@
 /****************************************************************/
 
 #include "SolutionNormalizer.h"
+#include "FEProblem.h"
+#include "NonlinearSystem.h"
 
-template<>
-InputParameters validParams<SolutionNormalizer>()
+// template <>
+registerMooseObject("GardensnakeApp", SolutionNormalizer);
+
+InputParameters
+SolutionNormalizer::validParams()
 {
-  InputParameters params = validParams<GeneralUserObject>();
 
-  params.addParam<PostprocessorName>("k", "This is here to inject a dependency to insure tha tthis runs after the eigenvalue computation");
+  InputParameters params = GeneralUserObject::validParams();
+
+  params.addParam<PostprocessorName>("k",
+                                     "This is here to inject a dependency to insure tha this runs "
+                                     "after the eigenvalue computation");
 
   return params;
 }
 
-SolutionNormalizer::SolutionNormalizer(const InputParameters & parameters) :
-    GeneralUserObject(parameters)
+SolutionNormalizer::SolutionNormalizer(const InputParameters & parameters)
+  : GeneralUserObject(parameters)
 {
   // We don't actually need to store it.... just try to get it to create the dependency.
   getPostprocessorValue("k");
@@ -34,11 +42,11 @@ SolutionNormalizer::SolutionNormalizer(const InputParameters & parameters) :
 void
 SolutionNormalizer::execute()
 {
-  std::cout<<"Normalizing Solution!"<<std::endl;
+  std::cout << "Normalizing Solution!" << std::endl;
 
   Real norm = _fe_problem.getNonlinearSystem().solution().l2_norm();
 
-  std::cout<<"Norm: "<<norm<<std::endl;
+  std::cout << "Norm: " << norm << std::endl;
 
   _fe_problem.getNonlinearSystem().solution() /= norm;
 

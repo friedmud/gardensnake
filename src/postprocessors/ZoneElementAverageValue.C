@@ -14,17 +14,17 @@
 
 #include "ZoneElementAverageValue.h"
 
-template<>
-InputParameters validParams<ZoneElementAverageValue>()
+InputParameters
+ZoneElementAverageValue::validParams()
 {
-  InputParameters params = validParams<ZoneElementIntegralPostprocessor>();
+  InputParameters params = ZoneElementIntegralPostprocessor::validParams();
   return params;
 }
 
-ZoneElementAverageValue::ZoneElementAverageValue(const InputParameters & parameters) :
-    ZoneElementIntegralPostprocessor(parameters),
-    _volume(0)
-{}
+ZoneElementAverageValue::ZoneElementAverageValue(const InputParameters & parameters)
+  : ZoneElementIntegralPostprocessor(parameters), _volume(0)
+{
+}
 
 void
 ZoneElementAverageValue::initialize()
@@ -36,8 +36,10 @@ ZoneElementAverageValue::initialize()
 void
 ZoneElementAverageValue::execute()
 {
-  // The zero is here because each element only falls in one zone - so it's sufficient to do this check for the first qp
-  if (std::find(_active_zones.begin(), _active_zones.end(), (unsigned int)_zone[0]) != _active_zones.end())
+  // The zero is here because each element only falls in one zone - so it's sufficient to do this
+  // check for the first qp
+  if (std::find(_active_zones.begin(), _active_zones.end(), (unsigned int)_zone[0]) !=
+      _active_zones.end())
   {
     ZoneElementIntegralPostprocessor::execute();
     _volume += _current_elem_volume;

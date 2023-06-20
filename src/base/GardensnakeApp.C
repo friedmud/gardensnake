@@ -32,10 +32,10 @@
 // UserObjects
 #include "SolutionNormalizer.h"
 
-template<>
-InputParameters validParams<GardensnakeApp>()
+InputParameters
+GardensnakeApp::validParams()
 {
-  InputParameters params = validParams<MooseApp>();
+  InputParameters params = MooseApp::validParams();
 
   params.set<bool>("use_legacy_uo_initialization") = false;
   params.set<bool>("use_legacy_uo_aux_computation") = false;
@@ -44,8 +44,7 @@ InputParameters validParams<GardensnakeApp>()
   return params;
 }
 
-GardensnakeApp::GardensnakeApp(InputParameters parameters) :
-    MooseApp(parameters)
+GardensnakeApp::GardensnakeApp(InputParameters parameters) : MooseApp(parameters)
 {
   srand(processor_id());
 
@@ -56,11 +55,13 @@ GardensnakeApp::GardensnakeApp(InputParameters parameters) :
   GardensnakeApp::associateSyntax(_syntax, _action_factory);
 }
 
-GardensnakeApp::~GardensnakeApp()
-{
-}
+GardensnakeApp::~GardensnakeApp() {}
 
-extern "C" void GardensnakeApp__registerApps() { GardensnakeApp::registerApps(); }
+extern "C" void
+GardensnakeApp__registerApps()
+{
+  GardensnakeApp::registerApps();
+}
 void
 GardensnakeApp::registerApps()
 {

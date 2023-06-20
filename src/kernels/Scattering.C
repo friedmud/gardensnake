@@ -15,10 +15,9 @@
 #include "Scattering.h"
 
 
-template<>
-InputParameters validParams<Scattering>()
+InputParameters Scattering::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
 
   params.addRequiredCoupledVar("fluxes", "All of the fluxes");
 

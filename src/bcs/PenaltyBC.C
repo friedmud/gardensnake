@@ -14,25 +14,24 @@
 
 #include "PenaltyBC.h"
 
-template<>
-InputParameters validParams<PenaltyBC>()
+InputParameters
+PenaltyBC::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   params.addParam<Real>("value", 0.0, "The value of the gradient on the boundary.");
   params.addParam<Real>("penalty", 1e10, "Penalty used for penalty*(u-value).");
   return params;
 }
 
-PenaltyBC::PenaltyBC(const InputParameters & parameters) :
-  IntegratedBC(parameters),
-  _value(getParam<Real>("value")),
-  _penalty(getParam<Real>("penalty"))
-{}
+PenaltyBC::PenaltyBC(const InputParameters & parameters)
+  : IntegratedBC(parameters), _value(getParam<Real>("value")), _penalty(getParam<Real>("penalty"))
+{
+}
 
 Real
 PenaltyBC::computeQpResidual()
 {
-  return _penalty*(_u[_qp]-_value);
+  return _penalty * (_u[_qp] - _value);
 }
 
 Real

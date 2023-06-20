@@ -11,17 +11,14 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
 #define INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
 
 #include "ZoneElementIntegralPostprocessor.h"
 
-//Forward Declarations
+// Forward Declarations
 class IntegratedFissionRatePostprocessor;
-
-template<>
-InputParameters validParams<IntegratedFissionRatePostprocessor>();
 
 /**
  * This postprocessor computes the volume of a specified block.
@@ -29,6 +26,8 @@ InputParameters validParams<IntegratedFissionRatePostprocessor>();
 class IntegratedFissionRatePostprocessor : public ZoneElementIntegralPostprocessor
 {
 public:
+  static InputParameters validParams();
+
   IntegratedFissionRatePostprocessor(const InputParameters & parameters);
 
 protected:
@@ -36,7 +35,7 @@ protected:
 
   bool _new;
 
-  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real>> & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<const VariableValue *> _vals;

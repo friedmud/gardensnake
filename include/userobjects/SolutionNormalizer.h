@@ -12,6 +12,7 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
+#pragma once
 
 #ifndef SOLUTIONNORMALIZER_H
 #define SOLUTIONNORMALIZER_H
@@ -20,23 +21,24 @@
 #include "GeneralUserObject.h"
 #include "MooseMesh.h"
 
-//Forward Declarations
+// Forward Declarations
 class RandomHitUserObject;
 class SolutionNormalizer;
 
-template<>
-InputParameters validParams<SolutionNormalizer>();
+// template <>
+// InputParameters validParams<SolutionNormalizer>();
 
-class SolutionNormalizer :
-  public GeneralUserObject
+class SolutionNormalizer : public GeneralUserObject
 {
 public:
+  static InputParameters validParams();
+
   SolutionNormalizer(const InputParameters & parameters);
 
   virtual ~SolutionNormalizer() {}
-  virtual void initialize(){}
+  virtual void initialize() {}
   virtual void execute();
-  virtual void finalize(){}
+  virtual void finalize() {}
 };
 
 #endif

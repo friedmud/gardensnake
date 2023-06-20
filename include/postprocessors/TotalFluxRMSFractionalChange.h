@@ -11,22 +11,22 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef TOTALFLUXRMSFRACTIONALCHANGE_H
 #define TOTALFLUXRMSFRACTIONALCHANGE_H
 
 #include "ElementAverageValue.h"
 
-//Forward Declarations
+// Forward Declarations
 class TotalFluxRMSFractionalChange;
-
-template<>
-InputParameters validParams<TotalFluxRMSFractionalChange>();
 
 class TotalFluxRMSFractionalChange : public ElementAverageValue
 {
 public:
+  static InputParameters validParams();
+
   TotalFluxRMSFractionalChange(const InputParameters & parameters);
+
   virtual Real getValue();
 
 protected:

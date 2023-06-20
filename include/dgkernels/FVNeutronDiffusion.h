@@ -11,21 +11,20 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef FVNEUTRONDIFFUSION_H
 #define FVNEUTRONDIFFUSION_H
 
 #include "DGKernel.h"
 
-//Forward Declarations
+// Forward Declarations
 class FVNeutronDiffusion;
-
-template<>
-InputParameters validParams<FVNeutronDiffusion>();
 
 class FVNeutronDiffusion : public DGKernel
 {
 public:
+  static InputParameters validParams();
+
   FVNeutronDiffusion(const InputParameters & parameters);
 
 protected:
@@ -34,8 +33,8 @@ protected:
 
   const unsigned int _group;
 
-  const MaterialProperty<std::vector<Real> > & _diffusivity;
-  const MaterialProperty<std::vector<Real> > & _diffusivity_neighbor;
+  const MaterialProperty<std::vector<Real>> & _diffusivity;
+  const MaterialProperty<std::vector<Real>> & _diffusivity_neighbor;
 };
 
 #endif

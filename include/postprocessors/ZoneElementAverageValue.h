@@ -11,21 +11,20 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef ZONEELEMENTAVERAGEVALUE_H
 #define ZONEELEMENTAVERAGEVALUE_H
 
 #include "ZoneElementIntegralPostprocessor.h"
 
-//Forward Declarations
+// Forward Declarations
 class ZoneElementAverageValue;
-
-template<>
-InputParameters validParams<ZoneElementAverageValue>();
 
 class ZoneElementAverageValue : public ZoneElementIntegralPostprocessor
 {
 public:
+  static InputParameters validParams();
+
   ZoneElementAverageValue(const InputParameters & parameters);
 
   virtual void initialize();

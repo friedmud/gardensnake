@@ -11,6 +11,7 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
+#pragma once
 
 #ifndef ZONEELEMENTINTEGRALPOSTPROCESSOR_H
 #define ZONEELEMENTINTEGRALPOSTPROCESSOR_H
@@ -20,12 +21,12 @@
 //Forward Declarations
 class ZoneElementIntegralPostprocessor;
 
-template<>
-InputParameters validParams<ZoneElementIntegralPostprocessor>();
 
 class ZoneElementIntegralPostprocessor : public ElementPostprocessor
 {
 public:
+static InputParameters validParams();
+
   ZoneElementIntegralPostprocessor(const InputParameters & parameters);
 
   virtual void initialize();

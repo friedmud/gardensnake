@@ -11,21 +11,24 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
+#pragma once
 
 #ifndef POSTPROCESSORRELATIVECHANGE_H
 #define POSTPROCESSORRELATIVECHANGE_H
 
 #include "GeneralPostprocessor.h"
 
-//Forward Declarations
+// Forward Declarations
 class PostprocessorRelativeChange;
 
-template<>
-InputParameters validParams<PostprocessorRelativeChange>();
+// template<>
+// InputParameters validParams<PostprocessorRelativeChange>();
 
 class PostprocessorRelativeChange : public GeneralPostprocessor
 {
 public:
+  static InputParameters validParams();
+
   PostprocessorRelativeChange(const InputParameters & parameters);
 
   virtual void initialize() {}
@@ -34,9 +37,8 @@ public:
   virtual Real getValue();
 
 protected:
-
   const PostprocessorValue & _pp;
   const PostprocessorValue & _pp_old;
 };
 
-#endif //POSTPROCESSORRELATIVECHANGE_H
+#endif // POSTPROCESSORRELATIVECHANGE_H

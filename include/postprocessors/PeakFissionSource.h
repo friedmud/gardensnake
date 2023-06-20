@@ -11,21 +11,21 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
+#pragma once
 #ifndef PEAKFISSIONSOURCE_H
 #define PEAKFISSIONSOURCE_H
 
 #include "ZoneElementAverageValue.h"
 
-//Forward Declarations
+// Forward Declarations
 class PeakFissionSource;
 
-template<>
-InputParameters validParams<PeakFissionSource>();
 
 class PeakFissionSource : public ZoneElementAverageValue
 {
 public:
+static InputParameters validParams();
+
   PeakFissionSource(const InputParameters & parameters);
 
   virtual void initialize();
@@ -39,7 +39,7 @@ protected:
 
   const Real & _center;
 
-  const MaterialProperty<std::vector<Real> > & _nu_sigma_f;
+  const MaterialProperty<std::vector<Real>> & _nu_sigma_f;
 
   // The values of all of the fluxes
   std::vector<const VariableValue *> _fluxes;

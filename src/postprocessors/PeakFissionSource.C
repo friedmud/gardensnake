@@ -14,10 +14,10 @@
 
 #include "PeakFissionSource.h"
 
-template<>
-InputParameters validParams<PeakFissionSource>()
+InputParameters
+PeakFissionSource::validParams()
 {
-  InputParameters params = validParams<ZoneElementAverageValue>();
+  InputParameters params = ZoneElementAverageValue::validParams();
 
   params.addRequiredCoupledVar("fluxes", "The fluxes");
 
@@ -30,17 +30,17 @@ InputParameters validParams<PeakFissionSource>()
   return params;
 }
 
-PeakFissionSource::PeakFissionSource(const InputParameters & parameters) :
-    ZoneElementAverageValue(parameters),
+PeakFissionSource::PeakFissionSource(const InputParameters & parameters)
+  : ZoneElementAverageValue(parameters),
     _report(getParam<MooseEnum>("report")),
     _center(getParam<Real>("center")),
-    _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
+    _nu_sigma_f(getMaterialProperty<std::vector<Real>>("nu_sigma_f"))
 {
   unsigned int n = coupledComponents("fluxes");
 
   _fluxes.resize(n);
 
-  for (unsigned int i=0; i<_fluxes.size(); ++i)
+  for (unsigned int i = 0; i < _fluxes.size(); ++i)
     _fluxes[i] = &coupledValue("fluxes", i);
 }
 
@@ -57,7 +57,7 @@ PeakFissionSource::computeQpIntegral()
 {
   Real fission_rate = 0;
 
-  for (unsigned int i=0; i<_fluxes.size(); i++)
+  for (unsigned int i = 0; i < _fluxes.size(); i++)
     fission_rate += _nu_sigma_f[_qp][i] * (*_fluxes[i])[_qp];
 
   if (fission_rate > _max_fission_rate)

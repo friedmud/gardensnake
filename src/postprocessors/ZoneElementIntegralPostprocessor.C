@@ -16,25 +16,28 @@
 
 #include "libmesh/quadrature.h"
 
-template<>
-InputParameters validParams<ZoneElementIntegralPostprocessor>()
+InputParameters
+ZoneElementIntegralPostprocessor::validParams()
 {
-  InputParameters params = validParams<ElementPostprocessor>();
+  InputParameters params = ElementPostprocessor::validParams();
 
   params.addRequiredCoupledVar("zone", "The zone");
 
-  params.addRequiredParam<std::vector<unsigned int> >("active_zones", "The zones where this postprocessor should be active");
+  params.addRequiredParam<std::vector<unsigned int>>(
+      "active_zones", "The zones where this postprocessor should be active");
 
   return params;
 }
 
-ZoneElementIntegralPostprocessor::ZoneElementIntegralPostprocessor(const InputParameters & parameters) :
-    ElementPostprocessor(parameters),
+ZoneElementIntegralPostprocessor::ZoneElementIntegralPostprocessor(
+    const InputParameters & parameters)
+  : ElementPostprocessor(parameters),
     _qp(0),
     _integral_value(0),
     _zone(coupledValue("zone")),
-    _active_zones(getParam<std::vector<unsigned int> >("active_zones"))
-{}
+    _active_zones(getParam<std::vector<unsigned int>>("active_zones"))
+{
+}
 
 void
 ZoneElementIntegralPostprocessor::initialize()
@@ -45,8 +48,10 @@ ZoneElementIntegralPostprocessor::initialize()
 void
 ZoneElementIntegralPostprocessor::execute()
 {
-  // The zero is here because each element only falls in one zone - so it's sufficient to do this check for the first qp
-  if (std::find(_active_zones.begin(), _active_zones.end(), (unsigned int)_zone[0]) != _active_zones.end())
+  // The zero is here because each element only falls in one zone - so it's sufficient to do this
+  // check for the first qp
+  if (std::find(_active_zones.begin(), _active_zones.end(), (unsigned int)_zone[0]) !=
+      _active_zones.end())
     _integral_value += computeIntegral();
 }
 
@@ -60,7 +65,8 @@ ZoneElementIntegralPostprocessor::getValue()
 void
 ZoneElementIntegralPostprocessor::threadJoin(const UserObject & y)
 {
-  const ZoneElementIntegralPostprocessor & pps = static_cast<const ZoneElementIntegralPostprocessor &>(y);
+  const ZoneElementIntegralPostprocessor & pps =
+      static_cast<const ZoneElementIntegralPostprocessor &>(y);
   _integral_value += pps._integral_value;
 }
 
@@ -69,8 +75,8 @@ ZoneElementIntegralPostprocessor::computeIntegral()
 {
   Real sum = 0;
 
-  for (_qp=0; _qp<_qrule->n_points(); _qp++)
-      sum += _JxW[_qp]*_coord[_qp]*computeQpIntegral();
+  for (_qp = 0; _qp < _qrule->n_points(); _qp++)
+    sum += _JxW[_qp] * _coord[_qp] * computeQpIntegral();
 
   return sum;
 }
