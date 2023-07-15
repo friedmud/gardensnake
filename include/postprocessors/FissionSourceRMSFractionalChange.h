@@ -12,13 +12,13 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef FISSIONSOURCERMSFRACTIONALCHANGE_H
-#define FISSIONSOURCERMSFRACTIONALCHANGE_H
+// #ifndef FISSIONSOURCERMSFRACTIONALCHANGE_H
+// #define FISSIONSOURCERMSFRACTIONALCHANGE_H
 
 #include "ZoneElementAverageValue.h"
 
 // Forward Declarations
-class FissionSourceRMSFractionalChange;
+// class FissionSourceRMSFractionalChange;
 
 class FissionSourceRMSFractionalChange : public ZoneElementAverageValue
 {
@@ -39,4 +39,4 @@ protected:
   std::vector<const VariableValue *> _fluxes_old;
 };
 
-#endif
+// #endif

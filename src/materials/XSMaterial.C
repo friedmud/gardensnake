@@ -14,11 +14,11 @@
 
 #include "XSMaterial.h"
 
-// template <>
+registerMooseObject("GardensnakeApp", XSMaterial);
+
 InputParameters
 XSMaterial::validParams()
 {
-  // InputParameters params = validParams<Material>();
   InputParameters params = Material::validParams();
 
   params.addRequiredParam<std::vector<Real>>("d0",

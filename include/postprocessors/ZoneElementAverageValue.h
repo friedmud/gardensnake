@@ -12,13 +12,13 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef ZONEELEMENTAVERAGEVALUE_H
-#define ZONEELEMENTAVERAGEVALUE_H
+// #ifndef ZONEELEMENTAVERAGEVALUE_H
+// #define ZONEELEMENTAVERAGEVALUE_H
 
 #include "ZoneElementIntegralPostprocessor.h"
 
 // Forward Declarations
-class ZoneElementAverageValue;
+// class ZoneElementAverageValue;
 
 class ZoneElementAverageValue : public ZoneElementIntegralPostprocessor
 {
@@ -36,4 +36,4 @@ protected:
   Real _volume;
 };
 
-#endif
+// #endif

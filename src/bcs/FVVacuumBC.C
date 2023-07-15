@@ -14,6 +14,8 @@
 
 #include "FVVacuumBC.h"
 
+registerMooseObject("GardensnakeApp", FVVacuumBC);
+
 InputParameters
 FVVacuumBC::validParams()
 {

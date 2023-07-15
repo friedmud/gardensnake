@@ -14,16 +14,16 @@
 
 #pragma once
 
-#ifndef SOLUTIONNORMALIZER_H
-#define SOLUTIONNORMALIZER_H
+// #ifndef SOLUTIONNORMALIZER_H
+// #define SOLUTIONNORMALIZER_H
 
 // Moose
 #include "GeneralUserObject.h"
 #include "MooseMesh.h"
 
 // Forward Declarations
-class RandomHitUserObject;
-class SolutionNormalizer;
+// class RandomHitUserObject;
+// class SolutionNormalizer;
 
 // template <>
 // InputParameters validParams<SolutionNormalizer>();
@@ -35,10 +35,10 @@ public:
 
   SolutionNormalizer(const InputParameters & parameters);
 
-  virtual ~SolutionNormalizer() {}
+//   virtual ~SolutionNormalizer() {}
   virtual void initialize() {}
   virtual void execute();
   virtual void finalize() {}
 };
 
-#endif
+// #endif

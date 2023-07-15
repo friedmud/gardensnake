@@ -14,6 +14,8 @@
 
 #include "PenaltyBC.h"
 
+registerMooseObject("GardensnakeApp", PenaltyBC);
+
 InputParameters
 PenaltyBC::validParams()
 {

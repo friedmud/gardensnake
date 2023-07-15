@@ -12,12 +12,12 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef ABSORPTION_H
-#define ABSORPTION_H
+// #ifndef ABSORPTION_H
+// #define ABSORPTION_H
 
 #include "Kernel.h"
 
-class Absorption;
+// class Absorption;
 
 class Absorption : public Kernel
 {
@@ -26,7 +26,7 @@ public:
 
   Absorption(const InputParameters & parameters);
 
-  virtual ~Absorption();
+//   virtual ~Absorption();
 
 protected:
   virtual Real computeQpResidual();
@@ -37,4 +37,4 @@ protected:
   const MaterialProperty<std::vector<Real>> & _sigma_a;
 };
 
-#endif /* ABSORPTION_H */
+// #endif /* ABSORPTION_H */

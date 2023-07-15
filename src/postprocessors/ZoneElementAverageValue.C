@@ -14,6 +14,8 @@
 
 #include "ZoneElementAverageValue.h"
 
+// registerMooseObject("GardensnakeApp", ZoneElementAverageValue);
+
 InputParameters
 ZoneElementAverageValue::validParams()
 {

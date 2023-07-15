@@ -14,6 +14,8 @@
 
 #include "TotalFluxRMSFractionalChange.h"
 
+registerMooseObject("GardensnakeApp", TotalFluxRMSFractionalChange);
+
 InputParameters
 TotalFluxRMSFractionalChange::validParams()
 {

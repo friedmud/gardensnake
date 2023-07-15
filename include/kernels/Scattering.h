@@ -12,8 +12,8 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef SCATTERING_H
-#define SCATTERING_H
+// #ifndef SCATTERING_H
+// #define SCATTERING_H
 
 #include "Kernel.h"
 
@@ -25,7 +25,7 @@ public:
   static InputParameters validParams();
 
   Scattering(const InputParameters & parameters);
-  virtual ~Scattering();
+//   virtual ~Scattering();
 
 protected:
   virtual Real computeQpResidual();
@@ -40,4 +40,4 @@ protected:
   std::vector<const VariableValue *> _vals;
 };
 
-#endif /* SCATTERING_H */
+// #endif /* SCATTERING_H */

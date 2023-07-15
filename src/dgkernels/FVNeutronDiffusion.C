@@ -16,6 +16,8 @@
 
 #include <cmath>
 
+registerMooseObject("GardensnakeApp", FVNeutronDiffusion);
+
 InputParameters
 FVNeutronDiffusion::validParams()
 {

@@ -12,13 +12,13 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef XSMATERIAL_H
-#define XSMATERIAL_H
+// #ifndef XSMATERIAL_H
+// #define XSMATERIAL_H
 
 #include "Material.h"
 
 // Forward Declarations
-class XSMaterial;
+// class XSMaterial;
 
 // template <>
 // InputParameters validParams<XSMaterial>();
@@ -60,4 +60,4 @@ protected:
   MaterialProperty<std::vector<Real>> & _nu_sigma_f;
 };
 
-#endif // XSMATERIAL_H
+// #endif // XSMATERIAL_H

@@ -14,6 +14,8 @@
 
 #include "IntegratedFissionRatePostprocessor.h"
 
+registerMooseObject("GardensnakeApp", IntegratedFissionRatePostprocessor);
+
 InputParameters
 IntegratedFissionRatePostprocessor::validParams()
 {

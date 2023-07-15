@@ -15,11 +15,11 @@
 #include "KEigenvalue.h"
 #include "SubProblem.h"
 
-// template<>
+registerMooseObject("GardensnakeApp", KEigenvalue);
+
 InputParameters
 KEigenvalue::validParams()
 {
-  // InputParameters params = validParams<GeneralPostprocessor>();
   InputParameters params = GeneralPostprocessor::validParams();
 
   params.addParam<PostprocessorName>(

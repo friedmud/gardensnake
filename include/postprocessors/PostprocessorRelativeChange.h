@@ -13,13 +13,13 @@
 /****************************************************************/
 #pragma once
 
-#ifndef POSTPROCESSORRELATIVECHANGE_H
-#define POSTPROCESSORRELATIVECHANGE_H
+// #ifndef POSTPROCESSORRELATIVECHANGE_H
+// #define POSTPROCESSORRELATIVECHANGE_H
 
 #include "GeneralPostprocessor.h"
 
 // Forward Declarations
-class PostprocessorRelativeChange;
+// class PostprocessorRelativeChange;
 
 // template<>
 // InputParameters validParams<PostprocessorRelativeChange>();
@@ -41,4 +41,4 @@ protected:
   const PostprocessorValue & _pp_old;
 };
 
-#endif // POSTPROCESSORRELATIVECHANGE_H
+// #endif // POSTPROCESSORRELATIVECHANGE_H

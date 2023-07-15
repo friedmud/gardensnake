@@ -13,13 +13,13 @@
 /****************************************************************/
 #pragma once
 
-#ifndef ZONEAUX_H
-#define ZONEAUX_H
+// #ifndef ZONEAUX_H
+// #define ZONEAUX_H
 
 #include "AuxKernel.h"
 
 // Forward Declarations
-class ZoneAux;
+// class ZoneAux;
 
 // template <>
 // InputParameters validParams<ZoneAux>();
@@ -38,7 +38,7 @@ public:
    */
   ZoneAux(const InputParameters & parameters);
 
-  virtual ~ZoneAux() {}
+//   virtual ~ZoneAux() {}
 
 protected:
   virtual Real computeValue();
@@ -50,4 +50,4 @@ protected:
   const std::vector<Real> & _zone_numbers;
 };
 
-#endif // ZONEAUX_H
+// #endif // ZONEAUX_H

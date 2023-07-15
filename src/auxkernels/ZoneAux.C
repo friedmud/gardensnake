@@ -14,6 +14,8 @@
 
 #include "ZoneAux.h"
 
+registerMooseObject("GardensnakeApp", ZoneAux);
+
 InputParameters
 ZoneAux::validParams()
 {

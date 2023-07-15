@@ -14,6 +14,8 @@
 
 #include "FissionSourceRMSFractionalChange.h"
 
+registerMooseObject("GardensnakeApp", FissionSourceRMSFractionalChange);
+
 InputParameters
 FissionSourceRMSFractionalChange::validParams()
 {

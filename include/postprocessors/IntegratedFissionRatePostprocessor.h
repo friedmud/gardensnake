@@ -12,13 +12,13 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
-#define INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
+// #ifndef INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
+// #define INTEGRATEDFISSIONRATEPOSTPROCESSOR_H
 
 #include "ZoneElementIntegralPostprocessor.h"
 
 // Forward Declarations
-class IntegratedFissionRatePostprocessor;
+// class IntegratedFissionRatePostprocessor;
 
 /**
  * This postprocessor computes the volume of a specified block.
@@ -41,4 +41,4 @@ protected:
   std::vector<const VariableValue *> _vals;
 };
 
-#endif
+// #endif

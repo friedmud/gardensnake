@@ -12,13 +12,13 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef PEAKFISSIONSOURCE_H
-#define PEAKFISSIONSOURCE_H
+// #ifndef PEAKFISSIONSOURCE_H
+// #define PEAKFISSIONSOURCE_H
 
 #include "ZoneElementAverageValue.h"
 
 // Forward Declarations
-class PeakFissionSource;
+// class PeakFissionSource;
 
 
 class PeakFissionSource : public ZoneElementAverageValue
@@ -52,4 +52,4 @@ protected:
   Real _max_position;
 };
 
-#endif
+// #endif

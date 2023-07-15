@@ -14,6 +14,9 @@
 
 #include "Absorption.h"
 
+registerMooseObject("GardensnakeApp", Absorption);
+
+
 InputParameters
 Absorption::validParams()
 {
@@ -29,7 +32,7 @@ Absorption::Absorption(const InputParameters & parameters)
 {
 }
 
-Absorption::~Absorption() {}
+// Absorption::~Absorption() {}
 
 Real
 Absorption::computeQpResidual()

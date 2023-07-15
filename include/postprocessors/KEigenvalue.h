@@ -13,13 +13,13 @@
 /****************************************************************/
 #pragma once
 
-#ifndef KEIGENVALUE_H
-#define KEIGENVALUE_H
+// #ifndef KEIGENVALUE_H
+// #define KEIGENVALUE_H
 
 #include "GeneralPostprocessor.h"
 
 // Forward Declarations
-class KEigenvalue;
+// class KEigenvalue;
 
 // template<>
 // InputParameters validParams<KEigenvalue>();
@@ -46,4 +46,4 @@ protected:
   const PostprocessorValue & _old_eigenvalue;
 };
 
-#endif // KEIGENVALUE_H
+// #endif // KEIGENVALUE_H

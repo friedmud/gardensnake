@@ -14,6 +14,8 @@
 
 #include "PeakFissionSource.h"
 
+registerMooseObject("GardensnakeApp", PeakFissionSource);
+
 InputParameters
 PeakFissionSource::validParams()
 {

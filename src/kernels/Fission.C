@@ -14,6 +14,8 @@
 
 #include "Fission.h"
 
+registerMooseObject("GardensnakeApp", Fission);
+
 InputParameters
 Fission::validParams()
 {
@@ -39,7 +41,7 @@ Fission::Fission(const InputParameters & parameters)
     _vals[i] = &coupledValueOld("fluxes", i);
 }
 
-Fission::~Fission() {}
+// Fission::~Fission() {}
 
 Real
 Fission::computeQpResidual()

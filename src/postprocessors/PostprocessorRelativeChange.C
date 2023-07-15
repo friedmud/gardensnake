@@ -15,6 +15,8 @@
 #include "PostprocessorRelativeChange.h"
 #include "SubProblem.h"
 
+registerMooseObject("GardensnakeApp", PostprocessorRelativeChange);
+
 InputParameters
 PostprocessorRelativeChange::validParams()
 {

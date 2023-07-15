@@ -12,12 +12,12 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef FISSION_H
-#define FISSION_H
+// #ifndef FISSION_H
+// #define FISSION_H
 
 #include "Kernel.h"
 
-class Fission;
+// class Fission;
 
 
 class Fission : public Kernel
@@ -26,7 +26,7 @@ public:
 static InputParameters validParams();
 
   Fission(const InputParameters & parameters);
-  virtual ~Fission();
+//   virtual ~Fission();
 
 protected:
   virtual Real computeQpResidual();
@@ -44,4 +44,4 @@ protected:
 };
 
 
-#endif /* FISSION_H */
+// #endif /* FISSION_H */

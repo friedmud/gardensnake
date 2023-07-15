@@ -16,6 +16,8 @@
 
 #include "libmesh/quadrature.h"
 
+// registerMooseObject("GardensnakeApp", ZoneElementIntegralPostprocessor);
+
 InputParameters
 ZoneElementIntegralPostprocessor::validParams()
 {

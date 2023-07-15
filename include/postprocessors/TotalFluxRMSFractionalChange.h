@@ -12,13 +12,13 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 #pragma once
-#ifndef TOTALFLUXRMSFRACTIONALCHANGE_H
-#define TOTALFLUXRMSFRACTIONALCHANGE_H
+// #ifndef TOTALFLUXRMSFRACTIONALCHANGE_H
+// #define TOTALFLUXRMSFRACTIONALCHANGE_H
 
 #include "ElementAverageValue.h"
 
 // Forward Declarations
-class TotalFluxRMSFractionalChange;
+// class TotalFluxRMSFractionalChange;
 
 class TotalFluxRMSFractionalChange : public ElementAverageValue
 {
@@ -36,4 +36,4 @@ protected:
   std::vector<const VariableValue *> _fluxes_old;
 };
 
-#endif
+// #endif

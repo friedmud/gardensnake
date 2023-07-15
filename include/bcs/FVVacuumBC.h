@@ -13,13 +13,13 @@
 /****************************************************************/
 #pragma once
 
-#ifndef FVVACUUMBC_H
-#define FVVACUUMBC_H
+// #ifndef FVVACUUMBC_H
+// #define FVVACUUMBC_H
 
 #include "IntegratedBC.h"
 
 // Forward Declarations
-class FVVacuumBC;
+// class FVVacuumBC;
 
 /**
  * Applies a DirichletBC using integral(penalty*(u - value))
@@ -40,4 +40,4 @@ protected:
   const MaterialProperty<std::vector<Real>> & _diffusivity;
 };
 
-#endif // FVVACUUMBC_H
+// #endif // FVVACUUMBC_H
