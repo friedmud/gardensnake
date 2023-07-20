@@ -2,6 +2,6 @@
 
 #pragma once
 
-#define GARDENSNAKE_REVISION "git commit 2479fae on 2023-06-20"
-#define GARDENSNAKE_VERSION "2479fae"
+#define GARDENSNAKE_REVISION "git commit 9f0b7b9 on 2023-07-15"
+#define GARDENSNAKE_VERSION "9f0b7b9"
 #define GARDENSNAKE_INSTALLABLE_DIRS "tests"
