@@ -7,108 +7,108 @@
 []
 
 [Variables]
-  [./group_0]
+  [group_0]
     order = CONSTANT
     family = MONOMIAL
     initial_condition = 1
-  [../]
-  [./group_1]
+  []
+  [group_1]
     order = CONSTANT
     family = MONOMIAL
     initial_condition = 1 # 0.0912871
-  [../]
+  []
 []
 
 [AuxVariables]
-  [./zone]
+  [zone]
     order = CONSTANT
     family = MONOMIAL
-  [../]
+  []
 []
 
 [Kernels]
   active = 'scatter_0 scatter_1 fission_0 absorption_0 absorption_1'
-  [./absorption_0]
+  [absorption_0]
     type = Absorption
     variable = group_0
-  [../]
-  [./fission_0]
+  []
+  [fission_0]
     type = Fission
     variable = group_0
     fluxes = 'group_0 group_1'
     k = k
-  [../]
-  [./scatter_0]
+  []
+  [scatter_0]
     type = Scattering
     variable = group_0
     fluxes = 'group_0 group_1'
-  [../]
-  [./absorption_1]
+  []
+  [absorption_1]
     type = Absorption
     variable = group_1
-  [../]
-  [./scatter_1]
+  []
+  [scatter_1]
     type = Scattering
     variable = group_1
     fluxes = 'group_0 group_1'
-  [../]
-  [./source_0]
+  []
+  [source_0]
     type = BodyForce
     variable = group_0
     value = 1
-  [../]
-  [./source_1]
+  []
+  [source_1]
     type = BodyForce
     variable = group_1
     value = 1
-  [../]
+  []
 []
 
 [DGKernels]
-  [./neutron_diff_0]
+  [neutron_diff_0]
     type = FVNeutronDiffusion
     variable = group_0
-  [../]
-  [./neutron_diff_1]
+  []
+  [neutron_diff_1]
     type = FVNeutronDiffusion
     variable = group_1
-  [../]
+  []
 []
 
 [AuxKernels]
-  [./zone]
+  [zone]
     type = ZoneAux
     variable = zone
     zones = '4 1 4'
     zone_edges = '0 25 275 300'
-  [../]
+  []
 []
 
 [BCs]
-  [./right_0]
+  [right_0]
     type = FVVacuumBC
     variable = group_0
     boundary = right
-  [../]
-  [./left_0]
+  []
+  [left_0]
     type = FVVacuumBC
     variable = group_0
     boundary = left
-  [../]
-  [./left_1]
+  []
+  [left_1]
     type = FVVacuumBC
     variable = group_1
     boundary = left
-  [../]
-  [./right_1]
+  []
+  [right_1]
     type = FVVacuumBC
     variable = group_1
     boundary = right
-  [../]
+  []
 []
 
 [Materials]
-  [./xs_mat]
+  [xs_mat]
     type = XSMaterial
     block = 0
     a1 = '0.0605 0.0741 0.0862 0.0852 0.0200 0.1300 0.0286'
@@ -119,78 +119,78 @@
     d0 = '1.4300 1.4300 1.4300 1.4300 1.2600 1.0000 1.5500'
     d1 = '0.3700 0.3700 0.3700 0.3700 0.2700 0.3400 0.2700'
     zone = zone
-  [../]
+  []
 []
 
 [Postprocessors]
-  [./fission_rate]
+  [fission_rate]
     type = IntegratedFissionRatePostprocessor
     execute_on = 'TIMESTEP_END initial'
     new = true
     fluxes = 'group_0 group_1'
-    zone =  zone
+    zone = zone
     active_zones = '0 1 2 3'
-  [../]
-  [./k]
+  []
+  [k]
     type = KEigenvalue
     execute_on = 'TIMESTEP_END initial'
     fission_rate = fission_rate
     fission_rate_old = fission_rate_old
-  [../]
-  [./fission_rate_old]
+  []
+  [fission_rate_old]
     type = IntegratedFissionRatePostprocessor
     new = false
     fluxes = 'group_0 group_1'
-    zone =  zone
+    zone = zone
     active_zones = '0 1 2 3'
-  [../]
-  [./fission_change]
+  []
+  [fission_change]
     type = FissionSourceRMSFractionalChange
-    variable = group_0 # have to pick one
+    # variable = group_0 # have to pick one
     fluxes = 'group_0 group_1'
-    zone =  zone
+    zone = zone
     active_zones = '0 1 2 3'
-  [../]
-  [./flux_change]
+  []
+  [flux_change]
     type = TotalFluxRMSFractionalChange
     variable = group_0 # Have to pick one
     fluxes = 'group_0 group_1'
-  [../]
-  [./peak]
+  []
+  [peak]
     type = PeakFissionSource
     active_zones = '0 1 2 3'
     zone = zone
     report = NORMALIZED_VALUE
     fluxes = 'group_0 group_1'
     center = 150
-  [../]
-  [./peak_position]
+  []
+  [peak_position]
     type = PeakFissionSource
     active_zones = '0 1 2 3'
     zone = zone
     report = position
     fluxes = 'group_0 group_1'
     center = 150
-  [../]
+  []
 []
 
 [UserObjects]
-  [./normalizer]
+  [normalizer]
     type = SolutionNormalizer
     execute_on = 'timestep_end initial'
     k = k
-  [../]
-  [./terminator]
+  []
+  [terminator]
     type = Terminator
     expression = '(fission_change < 1e-7) & (flux_change < 1e-5)'
-  [../]
+  []
 []
 
 [Preconditioning]
-  [./smp]
+  [smp]
     type = SMP
     full = true
-  [../]
+  []
 []
 
 [Executioner]

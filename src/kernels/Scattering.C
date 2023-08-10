@@ -15,10 +15,12 @@
 #include "Scattering.h"
 
 
-template<>
-InputParameters validParams<Scattering>()
+registerMooseObject("GardensnakeApp", Scattering);
+
+
+InputParameters Scattering::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
 
   params.addRequiredCoupledVar("fluxes", "All of the fluxes");
 
@@ -39,10 +41,7 @@ Scattering::Scattering(const InputParameters & parameters) :
     _vals[i] = &coupledValue("fluxes", i);
 }
 
-Scattering::~Scattering()
-{
-
-}
+// Scattering::~Scattering() { }
 
 Real
 Scattering::computeQpResidual()

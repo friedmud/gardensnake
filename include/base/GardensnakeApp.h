@@ -1,22 +1,27 @@
-#ifndef GARDENSNAKEAPP_H
-#define GARDENSNAKEAPP_H
+//* This file is part of GardenSnake, an open-source
+//* application for the simulation of plasmas
+//* https://github.com/friedmud/gardensnake
+//*
+//* GardenSnake is powered by the MOOSE Framework
+//* https://www.mooseframework.org
+//*
+//* Licensed under LGPL 2.1, please see LICENSE for details
+//* https://www.gnu.org/licenses/lgpl-2.1.html
+
+#pragma once
 
 #include "MooseApp.h"
-
-class GardensnakeApp;
-
-template<>
-InputParameters validParams<GardensnakeApp>();
 
 class GardensnakeApp : public MooseApp
 {
 public:
+  static InputParameters validParams();
+
   GardensnakeApp(InputParameters parameters);
+
   virtual ~GardensnakeApp();
 
   static void registerApps();
-  static void registerObjects(Factory & factory);
-  static void associateSyntax(Syntax & syntax, ActionFactory & action_factory);
-};
+  static void registerAll(Factory & f, ActionFactory & af, Syntax & s);
 
-#endif /* GARDENSNAKEAPP_H */
+};

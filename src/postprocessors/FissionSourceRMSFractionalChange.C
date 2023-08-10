@@ -14,26 +14,29 @@
 
 #include "FissionSourceRMSFractionalChange.h"
 
-template<>
-InputParameters validParams<FissionSourceRMSFractionalChange>()
+registerMooseObject("GardensnakeApp", FissionSourceRMSFractionalChange);
+
+InputParameters
+FissionSourceRMSFractionalChange::validParams()
 {
-  InputParameters params = validParams<ZoneElementAverageValue>();
+  InputParameters params = ZoneElementAverageValue::validParams();
 
   params.addRequiredCoupledVar("fluxes", "The fluxes");
 
   return params;
 }
 
-FissionSourceRMSFractionalChange::FissionSourceRMSFractionalChange(const InputParameters & parameters) :
-    ZoneElementAverageValue(parameters),
-    _nu_sigma_f(getMaterialProperty<std::vector<Real> >("nu_sigma_f"))
+FissionSourceRMSFractionalChange::FissionSourceRMSFractionalChange(
+    const InputParameters & parameters)
+  : ZoneElementAverageValue(parameters),
+    _nu_sigma_f(getMaterialProperty<std::vector<Real>>("nu_sigma_f"))
 {
   unsigned int n = coupledComponents("fluxes");
 
   _fluxes.resize(n);
   _fluxes_old.resize(n);
 
-  for (unsigned int i=0; i<_fluxes.size(); ++i)
+  for (unsigned int i = 0; i < _fluxes.size(); ++i)
   {
     _fluxes[i] = &coupledValue("fluxes", i);
     _fluxes_old[i] = &coupledValueOld("fluxes", i);
@@ -46,7 +49,7 @@ FissionSourceRMSFractionalChange::computeQpIntegral()
   Real fission_rate = 0;
   Real fission_rate_old = 0;
 
-  for (unsigned int i=0; i<_fluxes.size(); i++)
+  for (unsigned int i = 0; i < _fluxes.size(); i++)
   {
     fission_rate += _nu_sigma_f[_qp][i] * (*_fluxes[i])[_qp];
     fission_rate_old += _nu_sigma_f[_qp][i] * (*_fluxes_old[i])[_qp];
@@ -57,7 +60,7 @@ FissionSourceRMSFractionalChange::computeQpIntegral()
   if (isnan(change))
     return 0;
 
-  return change*change;
+  return change * change;
 }
 
 Real

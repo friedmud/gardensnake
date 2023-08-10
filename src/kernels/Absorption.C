@@ -14,28 +14,25 @@
 
 #include "Absorption.h"
 
+registerMooseObject("GardensnakeApp", Absorption);
 
-template<>
-InputParameters validParams<Absorption>()
+
+InputParameters
+Absorption::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
 
   return params;
 }
 
-
-Absorption::Absorption(const InputParameters & parameters) :
-    Kernel(parameters),
+Absorption::Absorption(const InputParameters & parameters)
+  : Kernel(parameters),
     _group(_var.number()),
-    _sigma_a(getMaterialProperty<std::vector<Real> >("sigma_a"))
+    _sigma_a(getMaterialProperty<std::vector<Real>>("sigma_a"))
 {
-
 }
 
-Absorption::~Absorption()
-{
-
-}
+// Absorption::~Absorption() {}
 
 Real
 Absorption::computeQpResidual()

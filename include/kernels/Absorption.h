@@ -11,23 +11,22 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
-#ifndef ABSORPTION_H
-#define ABSORPTION_H
+#pragma once
+// #ifndef ABSORPTION_H
+// #define ABSORPTION_H
 
 #include "Kernel.h"
 
-class Absorption;
-
-template<>
-InputParameters validParams<Absorption>();
-
+// class Absorption;
 
 class Absorption : public Kernel
 {
 public:
+  static InputParameters validParams();
+
   Absorption(const InputParameters & parameters);
-  virtual ~Absorption();
+
+//   virtual ~Absorption();
 
 protected:
   virtual Real computeQpResidual();
@@ -35,8 +34,7 @@ protected:
 
   const unsigned int _group;
 
-  const MaterialProperty<std::vector<Real> > & _sigma_a;
+  const MaterialProperty<std::vector<Real>> & _sigma_a;
 };
 
-
-#endif /* ABSORPTION_H */
+// #endif /* ABSORPTION_H */

@@ -15,24 +15,27 @@
 #include "PostprocessorRelativeChange.h"
 #include "SubProblem.h"
 
-template<>
-InputParameters validParams<PostprocessorRelativeChange>()
+registerMooseObject("GardensnakeApp", PostprocessorRelativeChange);
+
+InputParameters
+PostprocessorRelativeChange::validParams()
 {
-  InputParameters params = validParams<GeneralPostprocessor>();
+  InputParameters params = GeneralPostprocessor::validParams();
 
   params.addParam<PostprocessorName>("pp", "The Postprocessor to compute the relative change of.");
 
   return params;
 }
 
-PostprocessorRelativeChange::PostprocessorRelativeChange(const InputParameters & parameters) :
-    GeneralPostprocessor(parameters),
+PostprocessorRelativeChange::PostprocessorRelativeChange(const InputParameters & parameters)
+  : GeneralPostprocessor(parameters),
     _pp(getPostprocessorValue("pp")),
     _pp_old(getPostprocessorValueOld("pp"))
-{}
+{
+}
 
 Real
 PostprocessorRelativeChange::getValue()
 {
-  return std::abs((_pp - _pp_old)/_pp);
+  return std::abs((_pp - _pp_old) / _pp);
 }

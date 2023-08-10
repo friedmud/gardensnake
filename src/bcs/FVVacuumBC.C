@@ -14,25 +14,29 @@
 
 #include "FVVacuumBC.h"
 
-template<>
-InputParameters validParams<FVVacuumBC>()
+registerMooseObject("GardensnakeApp", FVVacuumBC);
+
+InputParameters
+FVVacuumBC::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   return params;
 }
 
-FVVacuumBC::FVVacuumBC(const InputParameters & parameters) :
-    IntegratedBC(parameters),
+FVVacuumBC::FVVacuumBC(const InputParameters & parameters)
+  : IntegratedBC(parameters),
     _group(_var.number()),
-    _diffusivity(getMaterialProperty<std::vector<Real> >("diffusivity"))
-{}
+    _diffusivity(getMaterialProperty<std::vector<Real>>("diffusivity"))
+{
+}
 
 Real
 FVVacuumBC::computeQpResidual()
 {
   Real delta_x = _current_elem->hmax();
 
-  return ((2.0*_diffusivity[_qp][_group]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp][_group] / delta_x) ) ) * _u[_qp];
+  return ((2.0 * _diffusivity[_qp][_group]) / delta_x) *
+         (1.0 / (1.0 + (4.0 * _diffusivity[_qp][_group] / delta_x))) * _u[_qp];
 }
 
 Real
@@ -40,5 +44,6 @@ FVVacuumBC::computeQpJacobian()
 {
   Real delta_x = _current_elem->hmax();
 
-  return ((2.0*_diffusivity[_qp][_group]) / delta_x) * ( 1.0 / ( 1.0 + (4.0*_diffusivity[_qp][_group] / delta_x) ) );
+  return ((2.0 * _diffusivity[_qp][_group]) / delta_x) *
+         (1.0 / (1.0 + (4.0 * _diffusivity[_qp][_group] / delta_x)));
 }

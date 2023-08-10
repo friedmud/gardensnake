@@ -11,22 +11,22 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
-#ifndef TOTALFLUXRMSFRACTIONALCHANGE_H
-#define TOTALFLUXRMSFRACTIONALCHANGE_H
+#pragma once
+// #ifndef TOTALFLUXRMSFRACTIONALCHANGE_H
+// #define TOTALFLUXRMSFRACTIONALCHANGE_H
 
 #include "ElementAverageValue.h"
 
-//Forward Declarations
-class TotalFluxRMSFractionalChange;
-
-template<>
-InputParameters validParams<TotalFluxRMSFractionalChange>();
+// Forward Declarations
+// class TotalFluxRMSFractionalChange;
 
 class TotalFluxRMSFractionalChange : public ElementAverageValue
 {
 public:
+  static InputParameters validParams();
+
   TotalFluxRMSFractionalChange(const InputParameters & parameters);
+
   virtual Real getValue();
 
 protected:
@@ -36,4 +36,4 @@ protected:
   std::vector<const VariableValue *> _fluxes_old;
 };
 
-#endif
+// #endif

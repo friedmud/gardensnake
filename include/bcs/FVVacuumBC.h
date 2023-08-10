@@ -11,18 +11,15 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
+#pragma once
 
-#ifndef FVVACUUMBC_H
-#define FVVACUUMBC_H
+// #ifndef FVVACUUMBC_H
+// #define FVVACUUMBC_H
 
 #include "IntegratedBC.h"
 
-
-//Forward Declarations
-class FVVacuumBC;
-
-template<>
-InputParameters validParams<FVVacuumBC>();
+// Forward Declarations
+// class FVVacuumBC;
 
 /**
  * Applies a DirichletBC using integral(penalty*(u - value))
@@ -30,6 +27,7 @@ InputParameters validParams<FVVacuumBC>();
 class FVVacuumBC : public IntegratedBC
 {
 public:
+  static InputParameters validParams();
 
   FVVacuumBC(const InputParameters & parameters);
 
@@ -39,7 +37,7 @@ protected:
 
   const unsigned int _group;
 
-  const MaterialProperty<std::vector<Real> > & _diffusivity;
+  const MaterialProperty<std::vector<Real>> & _diffusivity;
 };
 
-#endif //FVVACUUMBC_H
+// #endif // FVVACUUMBC_H

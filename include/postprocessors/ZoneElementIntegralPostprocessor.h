@@ -11,21 +11,22 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
+#pragma once
 
-#ifndef ZONEELEMENTINTEGRALPOSTPROCESSOR_H
-#define ZONEELEMENTINTEGRALPOSTPROCESSOR_H
+// #ifndef ZONEELEMENTINTEGRALPOSTPROCESSOR_H
+// #define ZONEELEMENTINTEGRALPOSTPROCESSOR_H
 
 #include "ElementPostprocessor.h"
 
 //Forward Declarations
-class ZoneElementIntegralPostprocessor;
+// class ZoneElementIntegralPostprocessor;
 
-template<>
-InputParameters validParams<ZoneElementIntegralPostprocessor>();
 
 class ZoneElementIntegralPostprocessor : public ElementPostprocessor
 {
 public:
+static InputParameters validParams();
+
   ZoneElementIntegralPostprocessor(const InputParameters & parameters);
 
   virtual void initialize();
@@ -45,4 +46,4 @@ protected:
   const std::vector<unsigned int> & _active_zones;
 };
 
-#endif
+// #endif

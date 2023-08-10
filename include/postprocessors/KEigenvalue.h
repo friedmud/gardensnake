@@ -11,21 +11,24 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
+#pragma once
 
-#ifndef KEIGENVALUE_H
-#define KEIGENVALUE_H
+// #ifndef KEIGENVALUE_H
+// #define KEIGENVALUE_H
 
 #include "GeneralPostprocessor.h"
 
-//Forward Declarations
-class KEigenvalue;
+// Forward Declarations
+// class KEigenvalue;
 
-template<>
-InputParameters validParams<KEigenvalue>();
+// template<>
+// InputParameters validParams<KEigenvalue>();
 
 class KEigenvalue : public GeneralPostprocessor
 {
 public:
+  static InputParameters validParams();
+
   KEigenvalue(const InputParameters & parameters);
 
   virtual void initialize() {}
@@ -43,4 +46,4 @@ protected:
   const PostprocessorValue & _old_eigenvalue;
 };
 
-#endif //KEIGENVALUE_H
+// #endif // KEIGENVALUE_H

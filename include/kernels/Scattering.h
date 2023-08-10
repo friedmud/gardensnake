@@ -11,23 +11,21 @@
 /*                                                              */
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
-
-#ifndef SCATTERING_H
-#define SCATTERING_H
+#pragma once
+// #ifndef SCATTERING_H
+// #define SCATTERING_H
 
 #include "Kernel.h"
 
 class Scattering;
 
-template<>
-InputParameters validParams<Scattering>();
-
-
 class Scattering : public Kernel
 {
 public:
+  static InputParameters validParams();
+
   Scattering(const InputParameters & parameters);
-  virtual ~Scattering();
+//   virtual ~Scattering();
 
 protected:
   virtual Real computeQpResidual();
@@ -36,11 +34,10 @@ protected:
 
   const unsigned int _group;
 
-  const MaterialProperty<std::vector<std::vector<Real> > > & _sigma_s;
+  const MaterialProperty<std::vector<std::vector<Real>>> & _sigma_s;
 
   // The values of all of the fluxes
   std::vector<const VariableValue *> _vals;
 };
 
-
-#endif /* SCATTERING_H */
+// #endif /* SCATTERING_H */
